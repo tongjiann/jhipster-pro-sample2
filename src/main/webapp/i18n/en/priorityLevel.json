@@ -1,0 +1,10 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "PriorityLevel": {
+      "null": "",
+      "HIGH": "HIGH",
+      "MEDIUM": "MEDIUM",
+      "LOW": "LOW"
+    }
+  }
+}

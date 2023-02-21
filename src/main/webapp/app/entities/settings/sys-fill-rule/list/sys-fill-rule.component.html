@@ -1,0 +1,237 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="jhipsterSampleApplicationApp.settingsSysFillRule.home.title">Sys Fill Rules</h1>
+      <form nz-form class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadPage()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="sysFillRules!" [nzScroll]="{ x: '100%' }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th
+              nzLeft="48px"
+              nzWidth="52px"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+            >
+              <span jhiTranslate="global.field.id">ID</span>
+              <i
+                class="ant-table-filter-icon"
+                nz-icon
+                nz-dropdown
+                #dropdown="nzDropdown"
+                nzType="search"
+                [nzDropdownMenu]="idmenu"
+                [class.ant-table-filter-open]="dropdown.nzVisible"
+                nzTrigger="click"
+                nzPlacement="bottomRight"
+                [nzClickHide]="false"
+                nzTableFilter
+              >
+              </i>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.name"
+              (nzSortOrderChange)="sort('name', $event)"
+              nzCustomFilter
+              *ngIf="showField('name')"
+              [nzWidth]="fieldWidth('name')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsSysFillRule.name">Name</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.code"
+              (nzSortOrderChange)="sort('code', $event)"
+              nzCustomFilter
+              *ngIf="showField('code')"
+              [nzWidth]="fieldWidth('code')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsSysFillRule.code">Code</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.implClass"
+              (nzSortOrderChange)="sort('implClass', $event)"
+              nzCustomFilter
+              *ngIf="showField('implClass')"
+              [nzWidth]="fieldWidth('implClass')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsSysFillRule.implClass">Impl Class</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.params"
+              (nzSortOrderChange)="sort('params', $event)"
+              nzCustomFilter
+              *ngIf="showField('params')"
+              [nzWidth]="fieldWidth('params')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsSysFillRule.params">Params</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.removedAt"
+              (nzSortOrderChange)="sort('removedAt', $event)"
+              nzCustomFilter
+              *ngIf="showField('removedAt')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsSysFillRule.removedAt">Removed At</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-sysFillRule [ngForOf]="nzTable.data">
+            <tr>
+              <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="mapOfCheckedId[sysFillRule.id!]" (nzCheckedChange)="refreshStatus()"></td>
+              <td nzLeft="48px">{{ sysFillRule.id }}</td>
+              <td *ngIf="showField('name')">
+                <ng-container *ngIf="!editStatus[sysFillRule.id!]?.edit; else namenameTpl">
+                  {{ sysFillRule.name }}
+                </ng-container>
+                <ng-template #namenameTpl>
+                  <input nz-input type="text" name="name" [(ngModel)]="sysFillRule.name" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('code')">
+                <ng-container *ngIf="!editStatus[sysFillRule.id!]?.edit; else namecodeTpl">
+                  {{ sysFillRule.code }}
+                </ng-container>
+                <ng-template #namecodeTpl>
+                  <input nz-input type="text" name="code" [(ngModel)]="sysFillRule.code" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('implClass')">
+                <ng-container *ngIf="!editStatus[sysFillRule.id!]?.edit; else nameimplClassTpl">
+                  {{ sysFillRule.implClass }}
+                </ng-container>
+                <ng-template #nameimplClassTpl>
+                  <input nz-input type="text" name="implClass" [(ngModel)]="sysFillRule.implClass" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('params')">
+                <ng-container *ngIf="!editStatus[sysFillRule.id!]?.edit; else nameparamsTpl">
+                  {{ sysFillRule.params }}
+                </ng-container>
+                <ng-template #nameparamsTpl>
+                  <input nz-input type="text" name="params" [(ngModel)]="sysFillRule.params" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('removedAt')">
+                <ng-container *ngIf="!editStatus[sysFillRule.id!]?.edit; else nameremovedAtTpl">
+                  {{ sysFillRule.removedAt | date: 'yyyy-MM-dd' }}
+                </ng-container>
+                <ng-template #nameremovedAtTpl>
+                  <nz-date-picker [(ngModel)]="sysFillRule.removedAt"></nz-date-picker>
+                </ng-template>
+              </td>
+              <td nzRight="0px">
+                <ng-container *ngIf="!editStatus[sysFillRule.id!]?.edit; else saveTpl">
+                  <button nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="行改" (click)="startEdit(sysFillRule)">
+                    <i nz-icon [nzType]="'file-text'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="danger"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="删除"
+                    (click)="deleteConfirm(sysFillRule.id)"
+                  >
+                    <i nz-icon nzType="close" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="编辑"
+                    [routerLink]="['./', sysFillRule.id, 'edit']"
+                  >
+                    <i nz-icon nzType="setting"></i>
+                  </button>
+                </ng-container>
+                <ng-template #saveTpl>
+                  <a (click)="saveEdit(sysFillRule)">保存</a>
+                  <a nz-popconfirm nzPopconfirmTitle="是否保存？" (nzOnConfirm)="cancelEdit(sysFillRule.id)">取消</a>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>

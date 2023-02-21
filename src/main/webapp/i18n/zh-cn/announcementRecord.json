@@ -1,0 +1,35 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "announcementRecord": {
+      "home": {
+        "title": "Announcement Records",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "创建新 Announcement Record",
+        "createOrEditLabel": "创建或编辑 Announcement Record",
+        "notFound": "No Announcement Records found"
+      },
+      "created": "Announcement Record {{ param }} 创建成功",
+      "updated": "Announcement Record {{ param }} 更新成功",
+      "deleted": "Announcement Record {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Announcement Record {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Announcement Record"
+      },
+      "id": "ID",
+      "anntId": "Annt Id",
+      "userId": "User Id",
+      "hasRead": "Has Read",
+      "readTime": "Read Time",
+      "removedAt": "Removed At",
+      "help": {
+        "anntId": "通告ID",
+        "userId": "用户id",
+        "hasRead": "是否已读",
+        "readTime": "阅读时间",
+        "removedAt": "软删除时间"
+      }
+    }
+  }
+}

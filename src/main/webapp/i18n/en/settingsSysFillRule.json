@@ -1,0 +1,35 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "settingsSysFillRule": {
+      "home": {
+        "title": "Sys Fill Rules",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Sys Fill Rule",
+        "createOrEditLabel": "Create or edit a Sys Fill Rule",
+        "notFound": "No Sys Fill Rules found"
+      },
+      "created": "A new Sys Fill Rule is created with identifier {{ param }}",
+      "updated": "A Sys Fill Rule is updated with identifier {{ param }}",
+      "deleted": "A Sys Fill Rule is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Sys Fill Rule {{ id }}?"
+      },
+      "detail": {
+        "title": "Sys Fill Rule"
+      },
+      "id": "ID",
+      "name": "Name",
+      "code": "Code",
+      "implClass": "Impl Class",
+      "params": "Params",
+      "removedAt": "Removed At",
+      "help": {
+        "name": "规则名称",
+        "code": "规则Code",
+        "implClass": "规则实现类",
+        "params": "规则参数",
+        "removedAt": "软删除时间"
+      }
+    }
+  }
+}

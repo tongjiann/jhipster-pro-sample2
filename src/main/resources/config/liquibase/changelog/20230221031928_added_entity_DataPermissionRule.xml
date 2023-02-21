@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity DataPermissionRule.
+    -->
+    
+    <changeSet id="20230221031928-1" author="jhipster">
+        <createTable tableName="data_permission_rule" remarks="数据权限规则">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="permission_id" type="varchar(255)" remarks="菜单ID">
+                <constraints nullable="true" />
+            </column>
+            <column name="name" type="varchar(255)" remarks="规则名称">
+                <constraints nullable="true" />
+            </column>
+            <column name="column" type="varchar(255)" remarks="字段">
+                <constraints nullable="true" />
+            </column>
+            <column name="conditions" type="varchar(255)" remarks="条件">
+                <constraints nullable="true" />
+            </column>
+            <column name="value" type="varchar(255)" remarks="规则值">
+                <constraints nullable="true" />
+            </column>
+            <column name="disabled" type="boolean" remarks="禁用状态">
+                <constraints nullable="true" />
+            </column>
+            <column name="removed_at" type="date" remarks="软删除时间">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="bigint" remarks="创建者Id">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_date" type="${datetimeType}" remarks="创建时间">
+                <constraints nullable="true" />
+            </column>
+            <column name="last_modified_by" type="bigint" remarks="修改者Id">
+                <constraints nullable="true" />
+            </column>
+            <column name="last_modified_date" type="${datetimeType}" remarks="修改时间">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here-->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+
+</databaseChangeLog>

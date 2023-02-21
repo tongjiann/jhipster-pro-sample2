@@ -1,0 +1,327 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="jhipsterSampleApplicationApp.smsMessage.home.title">Sms Messages</h1>
+      <form nz-form class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadPage()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="smsMessages!" [nzScroll]="{ x: '100%' }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th
+              nzLeft="48px"
+              nzWidth="52px"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+            >
+              <span jhiTranslate="global.field.id">ID</span>
+              <i
+                class="ant-table-filter-icon"
+                nz-icon
+                nz-dropdown
+                #dropdown="nzDropdown"
+                nzType="search"
+                [nzDropdownMenu]="idmenu"
+                [class.ant-table-filter-open]="dropdown.nzVisible"
+                nzTrigger="click"
+                nzPlacement="bottomRight"
+                [nzClickHide]="false"
+                nzTableFilter
+              >
+              </i>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.title"
+              (nzSortOrderChange)="sort('title', $event)"
+              nzCustomFilter
+              *ngIf="showField('title')"
+              [nzWidth]="fieldWidth('title')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.title">Title</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.sendType"
+              (nzSortOrderChange)="sort('sendType', $event)"
+              nzCustomFilter
+              *ngIf="showField('sendType')"
+              [nzWidth]="fieldWidth('sendType')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.sendType">Send Type</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.receiver"
+              (nzSortOrderChange)="sort('receiver', $event)"
+              nzCustomFilter
+              *ngIf="showField('receiver')"
+              [nzWidth]="fieldWidth('receiver')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.receiver">Receiver</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.params"
+              (nzSortOrderChange)="sort('params', $event)"
+              nzCustomFilter
+              *ngIf="showField('params')"
+              [nzWidth]="fieldWidth('params')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.params">Params</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.content"
+              (nzSortOrderChange)="sort('content', $event)"
+              nzCustomFilter
+              *ngIf="showField('content')"
+              [nzWidth]="fieldWidth('content')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.content">Content</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.sendTime"
+              (nzSortOrderChange)="sort('sendTime', $event)"
+              nzCustomFilter
+              *ngIf="showField('sendTime')"
+              [nzWidth]="fieldWidth('sendTime')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.sendTime">Send Time</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.sendStatus"
+              (nzSortOrderChange)="sort('sendStatus', $event)"
+              nzCustomFilter
+              *ngIf="showField('sendStatus')"
+              [nzWidth]="fieldWidth('sendStatus')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.sendStatus">Send Status</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.retryNum"
+              (nzSortOrderChange)="sort('retryNum', $event)"
+              nzCustomFilter
+              *ngIf="showField('retryNum')"
+              [nzWidth]="fieldWidth('retryNum')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.retryNum">Retry Num</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.failResult"
+              (nzSortOrderChange)="sort('failResult', $event)"
+              nzCustomFilter
+              *ngIf="showField('failResult')"
+              [nzWidth]="fieldWidth('failResult')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.failResult">Fail Result</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.remark"
+              (nzSortOrderChange)="sort('remark', $event)"
+              nzCustomFilter
+              *ngIf="showField('remark')"
+              [nzWidth]="fieldWidth('remark')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.remark">Remark</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.removedAt"
+              (nzSortOrderChange)="sort('removedAt', $event)"
+              nzCustomFilter
+              *ngIf="showField('removedAt')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.smsMessage.removedAt">Removed At</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-smsMessage [ngForOf]="nzTable.data">
+            <tr>
+              <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="mapOfCheckedId[smsMessage.id!]" (nzCheckedChange)="refreshStatus()"></td>
+              <td nzLeft="48px">{{ smsMessage.id }}</td>
+              <td *ngIf="showField('title')">
+                <ng-container *ngIf="!editStatus[smsMessage.id!]?.edit; else nametitleTpl">
+                  {{ smsMessage.title }}
+                </ng-container>
+                <ng-template #nametitleTpl>
+                  <input nz-input type="text" name="title" [(ngModel)]="smsMessage.title" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('sendType')" jhiTranslate="{{ 'jhipsterSampleApplicationApp.MessageSendType.' + smsMessage.sendType }}">
+                {{ smsMessage.sendType }}
+              </td>
+              <td *ngIf="showField('receiver')">
+                <ng-container *ngIf="!editStatus[smsMessage.id!]?.edit; else namereceiverTpl">
+                  {{ smsMessage.receiver }}
+                </ng-container>
+                <ng-template #namereceiverTpl>
+                  <input nz-input type="text" name="receiver" [(ngModel)]="smsMessage.receiver" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('params')">
+                <ng-container *ngIf="!editStatus[smsMessage.id!]?.edit; else nameparamsTpl">
+                  {{ smsMessage.params }}
+                </ng-container>
+                <ng-template #nameparamsTpl>
+                  <input nz-input type="text" name="params" [(ngModel)]="smsMessage.params" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('sendTime')">
+                <ng-container *ngIf="!editStatus[smsMessage.id!]?.edit; else namesendTimeTpl">
+                  {{ smsMessage.sendTime }}
+                </ng-container>
+                <ng-template #namesendTimeTpl>
+                  <nz-date-picker [(ngModel)]="smsMessage.sendTime" nzShowTime></nz-date-picker>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('sendStatus')" jhiTranslate="{{ 'jhipsterSampleApplicationApp.SendStatus.' + smsMessage.sendStatus }}">
+                {{ smsMessage.sendStatus }}
+              </td>
+              <td *ngIf="showField('retryNum')">
+                <ng-container *ngIf="!editStatus[smsMessage.id!]?.edit; else nameretryNumTpl">
+                  {{ smsMessage.retryNum }}
+                </ng-container>
+                <ng-template #nameretryNumTpl>
+                  <nz-input-number name="retryNum" [(ngModel)]="smsMessage.retryNum"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('failResult')">
+                <ng-container *ngIf="!editStatus[smsMessage.id!]?.edit; else namefailResultTpl">
+                  {{ smsMessage.failResult }}
+                </ng-container>
+                <ng-template #namefailResultTpl>
+                  <input nz-input type="text" name="failResult" [(ngModel)]="smsMessage.failResult" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('remark')">
+                <ng-container *ngIf="!editStatus[smsMessage.id!]?.edit; else nameremarkTpl">
+                  {{ smsMessage.remark }}
+                </ng-container>
+                <ng-template #nameremarkTpl>
+                  <input nz-input type="text" name="remark" [(ngModel)]="smsMessage.remark" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('removedAt')">
+                <ng-container *ngIf="!editStatus[smsMessage.id!]?.edit; else nameremovedAtTpl">
+                  {{ smsMessage.removedAt | date: 'yyyy-MM-dd' }}
+                </ng-container>
+                <ng-template #nameremovedAtTpl>
+                  <nz-date-picker [(ngModel)]="smsMessage.removedAt"></nz-date-picker>
+                </ng-template>
+              </td>
+              <td nzRight="0px">
+                <ng-container *ngIf="!editStatus[smsMessage.id!]?.edit; else saveTpl">
+                  <button nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="行改" (click)="startEdit(smsMessage)">
+                    <i nz-icon [nzType]="'file-text'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="danger"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="删除"
+                    (click)="deleteConfirm(smsMessage.id)"
+                  >
+                    <i nz-icon nzType="close" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="编辑"
+                    [routerLink]="['./', smsMessage.id, 'edit']"
+                  >
+                    <i nz-icon nzType="setting"></i>
+                  </button>
+                </ng-container>
+                <ng-template #saveTpl>
+                  <a (click)="saveEdit(smsMessage)">保存</a>
+                  <a nz-popconfirm nzPopconfirmTitle="是否保存？" (nzOnConfirm)="cancelEdit(smsMessage.id)">取消</a>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>

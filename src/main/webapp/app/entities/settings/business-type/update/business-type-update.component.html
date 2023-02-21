@@ -1,0 +1,88 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.settingsBusinessType.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.settingsBusinessType.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="businessType!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_name"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsBusinessType.name"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsBusinessType.help.name' | translate"
+        >Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="name" id="field_name" [(ngModel)]="businessType!.name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_code"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsBusinessType.code"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsBusinessType.help.code' | translate"
+        >Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="code" id="field_code" [(ngModel)]="businessType!.code" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_description"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsBusinessType.description"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsBusinessType.help.description' | translate"
+        >Description</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="description" id="field_description" [(ngModel)]="businessType!.description" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_icon"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsBusinessType.icon"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsBusinessType.help.icon' | translate"
+        >Icon</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="icon" id="field_icon" [(ngModel)]="businessType!.icon" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsBusinessType.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsBusinessType.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="businessType!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

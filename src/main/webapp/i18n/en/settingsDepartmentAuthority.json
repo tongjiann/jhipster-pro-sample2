@@ -1,0 +1,41 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "settingsDepartmentAuthority": {
+      "home": {
+        "title": "Department Authorities",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Department Authority",
+        "createOrEditLabel": "Create or edit a Department Authority",
+        "notFound": "No Department Authorities found"
+      },
+      "created": "A new Department Authority is created with identifier {{ param }}",
+      "updated": "A Department Authority is updated with identifier {{ param }}",
+      "deleted": "A Department Authority is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Department Authority {{ id }}?"
+      },
+      "detail": {
+        "title": "Department Authority"
+      },
+      "id": "ID",
+      "name": "Name",
+      "code": "Code",
+      "description": "Description",
+      "createUserId": "Create User Id",
+      "createTime": "Create Time",
+      "removedAt": "Removed At",
+      "users": "Users",
+      "apiPermissions": "Api Permissions",
+      "viewPermissions": "View Permissions",
+      "department": "Department",
+      "help": {
+        "name": "名称",
+        "code": "代码",
+        "description": "说明",
+        "createUserId": "创建用户 Id",
+        "createTime": "创建时间",
+        "removedAt": "软删除时间"
+      }
+    }
+  }
+}

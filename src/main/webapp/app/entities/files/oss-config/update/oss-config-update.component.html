@@ -1,0 +1,179 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.filesOssConfig.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="ossConfig!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_provider"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.provider"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.provider' | translate"
+        >Provider</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_provider"
+          [(ngModel)]="ossConfig!.provider"
+          name="provider"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="MINIO" nzLabel="{{ 'jhipsterSampleApplicationApp.OssProvider.MINIO' | translate }}"></nz-option>
+          <nz-option nzValue="QINIU" nzLabel="{{ 'jhipsterSampleApplicationApp.OssProvider.QINIU' | translate }}"></nz-option>
+          <nz-option nzValue="ALI" nzLabel="{{ 'jhipsterSampleApplicationApp.OssProvider.ALI' | translate }}"></nz-option>
+          <nz-option nzValue="TENCENT" nzLabel="{{ 'jhipsterSampleApplicationApp.OssProvider.TENCENT' | translate }}"></nz-option>
+          <nz-option nzValue="LOCAL" nzLabel="{{ 'jhipsterSampleApplicationApp.OssProvider.LOCAL' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_ossCode"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.ossCode"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.ossCode' | translate"
+        >Oss Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="ossCode" id="field_ossCode" [(ngModel)]="ossConfig!.ossCode" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_endpoint"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.endpoint"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.endpoint' | translate"
+        >Endpoint</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="endpoint" id="field_endpoint" [(ngModel)]="ossConfig!.endpoint" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_accessKey"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.accessKey"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.accessKey' | translate"
+        >Access Key</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="accessKey" id="field_accessKey" [(ngModel)]="ossConfig!.accessKey" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_secretKey"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.secretKey"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.secretKey' | translate"
+        >Secret Key</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="secretKey" id="field_secretKey" [(ngModel)]="ossConfig!.secretKey" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_bucketName"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.bucketName"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.bucketName' | translate"
+        >Bucket Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="bucketName" id="field_bucketName" [(ngModel)]="ossConfig!.bucketName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_appId"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.appId"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.appId' | translate"
+        >App Id</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="appId" id="field_appId" [(ngModel)]="ossConfig!.appId" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_region"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.region"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.region' | translate"
+        >Region</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="region" id="field_region" [(ngModel)]="ossConfig!.region" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_remark"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.remark"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.remark' | translate"
+        >Remark</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="remark" id="field_remark" [(ngModel)]="ossConfig!.remark" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_enabled"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.enabled"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.enabled' | translate"
+        >Enabled</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="ossConfig!.enabled" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesOssConfig.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="ossConfig!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

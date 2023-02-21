@@ -1,0 +1,212 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.systemApiPermission.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="apiPermission!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_serviceName"
+        jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.serviceName"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemApiPermission.help.serviceName' | translate"
+        >Service Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="serviceName" id="field_serviceName" [(ngModel)]="apiPermission!.serviceName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_name"
+        jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.name"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemApiPermission.help.name' | translate"
+        >Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="name" id="field_name" [(ngModel)]="apiPermission!.name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_code"
+        jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.code"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemApiPermission.help.code' | translate"
+        >Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="code" id="field_code" [(ngModel)]="apiPermission!.code" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_description"
+        jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.description"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemApiPermission.help.description' | translate"
+        >Description</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="description" id="field_description" [(ngModel)]="apiPermission!.description" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_type"
+        jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.type"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemApiPermission.help.type' | translate"
+        >Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select style="width: 200px" id="field_type" [(ngModel)]="apiPermission!.type" name="type" nzAllowClear nzPlaceHolder="Choose">
+          <nz-option nzValue="BUSINESS" nzLabel="{{ 'jhipsterSampleApplicationApp.ApiPermissionType.BUSINESS' | translate }}"></nz-option>
+          <nz-option nzValue="API" nzLabel="{{ 'jhipsterSampleApplicationApp.ApiPermissionType.API' | translate }}"></nz-option>
+          <nz-option nzValue="ENTITY" nzLabel="{{ 'jhipsterSampleApplicationApp.ApiPermissionType.ENTITY' | translate }}"></nz-option>
+          <nz-option
+            nzValue="MICRO_SERVICE"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.ApiPermissionType.MICRO_SERVICE' | translate }}"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_method"
+        jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.method"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemApiPermission.help.method' | translate"
+        >Method</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="method" id="field_method" [(ngModel)]="apiPermission!.method" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_url"
+        jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.url"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemApiPermission.help.url' | translate"
+        >Url</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="url" id="field_url" [(ngModel)]="apiPermission!.url" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_status"
+        jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.status"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemApiPermission.help.status' | translate"
+        >Status</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_status"
+          [(ngModel)]="apiPermission!.status"
+          name="status"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option
+            nzValue="CONFIGURABLE"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.ApiPermissionState.CONFIGURABLE' | translate }}"
+          ></nz-option>
+          <nz-option
+            nzValue="PERMIT_ALL"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.ApiPermissionState.PERMIT_ALL' | translate }}"
+          ></nz-option>
+          <nz-option
+            nzValue="UNREACHABLE"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.ApiPermissionState.UNREACHABLE' | translate }}"
+          ></nz-option>
+          <nz-option
+            nzValue="AUTHENTICATE"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.ApiPermissionState.AUTHENTICATE' | translate }}"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemApiPermission.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="apiPermission!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_departmentAuthority"
+        jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.departmentAuthority"
+        >Department Authority</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 250px"
+          id="field_departmentAuthority"
+          name="departmentAuthority"
+          [(ngModel)]="apiPermission!.departmentAuthority"
+        >
+          <nz-option
+            *ngFor="let departmentAuthorityOption of departmentAuthoritiesCollection; trackBy: trackDepartmentAuthorityById"
+            [nzLabel]="departmentAuthorityOption!.id || null"
+            [nzValue]="departmentAuthorityOption.id"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_parent" jhiTranslate="jhipsterSampleApplicationApp.systemApiPermission.parent"
+        >Parent</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-tree-select
+          style="width: 250px"
+          id="field_parent"
+          [nzNodes]="apiPermissionsCollectionNzTreeNodes"
+          name="parent"
+          [(ngModel)]="apiPermission!.parent"
+        >
+        </nz-tree-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

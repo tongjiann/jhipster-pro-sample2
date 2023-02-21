@@ -1,0 +1,446 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.home.title">Upload Images</h1>
+      <form nz-form class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadPage()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="uploadImages!" [nzScroll]="{ x: '100%' }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th
+              nzLeft="48px"
+              nzWidth="52px"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+            >
+              <span jhiTranslate="global.field.id">ID</span>
+              <i
+                class="ant-table-filter-icon"
+                nz-icon
+                nz-dropdown
+                #dropdown="nzDropdown"
+                nzType="search"
+                [nzDropdownMenu]="idmenu"
+                [class.ant-table-filter-open]="dropdown.nzVisible"
+                nzTrigger="click"
+                nzPlacement="bottomRight"
+                [nzClickHide]="false"
+                nzTableFilter
+              >
+              </i>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.fullName"
+              (nzSortOrderChange)="sort('fullName', $event)"
+              nzCustomFilter
+              *ngIf="showField('fullName')"
+              [nzWidth]="fieldWidth('fullName')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.fullName">Full Name</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.name"
+              (nzSortOrderChange)="sort('name', $event)"
+              nzCustomFilter
+              *ngIf="showField('name')"
+              [nzWidth]="fieldWidth('name')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.name">Name</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.ext"
+              (nzSortOrderChange)="sort('ext', $event)"
+              nzCustomFilter
+              *ngIf="showField('ext')"
+              [nzWidth]="fieldWidth('ext')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.ext">Ext</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.type"
+              (nzSortOrderChange)="sort('type', $event)"
+              nzCustomFilter
+              *ngIf="showField('type')"
+              [nzWidth]="fieldWidth('type')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.type">Type</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.url"
+              (nzSortOrderChange)="sort('url', $event)"
+              nzCustomFilter
+              *ngIf="showField('url')"
+              [nzWidth]="fieldWidth('url')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.url">Url</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.path"
+              (nzSortOrderChange)="sort('path', $event)"
+              nzCustomFilter
+              *ngIf="showField('path')"
+              [nzWidth]="fieldWidth('path')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.path">Path</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.folder"
+              (nzSortOrderChange)="sort('folder', $event)"
+              nzCustomFilter
+              *ngIf="showField('folder')"
+              [nzWidth]="fieldWidth('folder')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.folder">Folder</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.entityName"
+              (nzSortOrderChange)="sort('entityName', $event)"
+              nzCustomFilter
+              *ngIf="showField('entityName')"
+              [nzWidth]="fieldWidth('entityName')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.entityName">Entity Name</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.createAt"
+              (nzSortOrderChange)="sort('createAt', $event)"
+              nzCustomFilter
+              *ngIf="showField('createAt')"
+              [nzWidth]="fieldWidth('createAt')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.createAt">Create At</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.fileSize"
+              (nzSortOrderChange)="sort('fileSize', $event)"
+              nzCustomFilter
+              *ngIf="showField('fileSize')"
+              [nzWidth]="fieldWidth('fileSize')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.fileSize">File Size</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.smartUrl"
+              (nzSortOrderChange)="sort('smartUrl', $event)"
+              nzCustomFilter
+              *ngIf="showField('smartUrl')"
+              [nzWidth]="fieldWidth('smartUrl')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.smartUrl">Smart Url</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.mediumUrl"
+              (nzSortOrderChange)="sort('mediumUrl', $event)"
+              nzCustomFilter
+              *ngIf="showField('mediumUrl')"
+              [nzWidth]="fieldWidth('mediumUrl')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.mediumUrl">Medium Url</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.referenceCount"
+              (nzSortOrderChange)="sort('referenceCount', $event)"
+              nzCustomFilter
+              *ngIf="showField('referenceCount')"
+              [nzWidth]="fieldWidth('referenceCount')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.referenceCount">Reference Count</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.removedAt"
+              (nzSortOrderChange)="sort('removedAt', $event)"
+              nzCustomFilter
+              *ngIf="showField('removedAt')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.removedAt">Removed At</span>
+            </th>
+            <th
+              [nzWidth]="relationshipWidth('user')"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.user"
+              (nzSortOrderChange)="sort('user', $event)"
+              nzShowFilter
+              [nzFilters]="mapOfFilter.user?.list"
+              (nzFilterChange)="filter('user', $event)"
+              *ngIf="showRelationship('user')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.user">User</span>
+            </th>
+            <th
+              [nzWidth]="relationshipWidth('category')"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.category"
+              (nzSortOrderChange)="sort('category', $event)"
+              nzShowFilter
+              [nzFilters]="mapOfFilter.category?.list"
+              (nzFilterChange)="filter('category', $event)"
+              *ngIf="showRelationship('category')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.category">Category</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-uploadImage [ngForOf]="nzTable.data">
+            <tr>
+              <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="mapOfCheckedId[uploadImage.id!]" (nzCheckedChange)="refreshStatus()"></td>
+              <td nzLeft="48px">{{ uploadImage.id }}</td>
+              <td *ngIf="showField('fullName')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else namefullNameTpl">
+                  {{ uploadImage.fullName }}
+                </ng-container>
+                <ng-template #namefullNameTpl>
+                  <input nz-input type="text" name="fullName" [(ngModel)]="uploadImage.fullName" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('name')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else namenameTpl">
+                  {{ uploadImage.name }}
+                </ng-container>
+                <ng-template #namenameTpl>
+                  <input nz-input type="text" name="name" [(ngModel)]="uploadImage.name" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('ext')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else nameextTpl">
+                  {{ uploadImage.ext }}
+                </ng-container>
+                <ng-template #nameextTpl>
+                  <input nz-input type="text" name="ext" [(ngModel)]="uploadImage.ext" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('type')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else nametypeTpl">
+                  {{ uploadImage.type }}
+                </ng-container>
+                <ng-template #nametypeTpl>
+                  <input nz-input type="text" name="type" [(ngModel)]="uploadImage.type" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('url')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else nameurlTpl">
+                  {{ uploadImage.url }}
+                </ng-container>
+                <ng-template #nameurlTpl>
+                  <input nz-input type="text" name="url" [(ngModel)]="uploadImage.url" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('path')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else namepathTpl">
+                  {{ uploadImage.path }}
+                </ng-container>
+                <ng-template #namepathTpl>
+                  <input nz-input type="text" name="path" [(ngModel)]="uploadImage.path" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('folder')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else namefolderTpl">
+                  {{ uploadImage.folder }}
+                </ng-container>
+                <ng-template #namefolderTpl>
+                  <input nz-input type="text" name="folder" [(ngModel)]="uploadImage.folder" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('entityName')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else nameentityNameTpl">
+                  {{ uploadImage.entityName }}
+                </ng-container>
+                <ng-template #nameentityNameTpl>
+                  <input nz-input type="text" name="entityName" [(ngModel)]="uploadImage.entityName" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('createAt')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else namecreateAtTpl">
+                  {{ uploadImage.createAt }}
+                </ng-container>
+                <ng-template #namecreateAtTpl>
+                  <nz-date-picker [(ngModel)]="uploadImage.createAt" nzShowTime></nz-date-picker>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('fileSize')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else namefileSizeTpl">
+                  {{ uploadImage.fileSize }}
+                </ng-container>
+                <ng-template #namefileSizeTpl>
+                  <nz-input-number name="fileSize" [(ngModel)]="uploadImage.fileSize"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('smartUrl')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else namesmartUrlTpl">
+                  {{ uploadImage.smartUrl }}
+                </ng-container>
+                <ng-template #namesmartUrlTpl>
+                  <input nz-input type="text" name="smartUrl" [(ngModel)]="uploadImage.smartUrl" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('mediumUrl')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else namemediumUrlTpl">
+                  {{ uploadImage.mediumUrl }}
+                </ng-container>
+                <ng-template #namemediumUrlTpl>
+                  <input nz-input type="text" name="mediumUrl" [(ngModel)]="uploadImage.mediumUrl" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('referenceCount')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else namereferenceCountTpl">
+                  {{ uploadImage.referenceCount }}
+                </ng-container>
+                <ng-template #namereferenceCountTpl>
+                  <nz-input-number name="referenceCount" [(ngModel)]="uploadImage.referenceCount"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('removedAt')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else nameremovedAtTpl">
+                  {{ uploadImage.removedAt | date: 'yyyy-MM-dd' }}
+                </ng-container>
+                <ng-template #nameremovedAtTpl>
+                  <nz-date-picker [(ngModel)]="uploadImage.removedAt"></nz-date-picker>
+                </ng-template>
+              </td>
+              <td *ngIf="showRelationship('user')">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else nameTpl">
+                  <nz-avatar nzIcon="user" [nzText]="uploadImage?.user?.login" *ngIf="uploadImage?.user?.id"></nz-avatar>
+                </ng-container>
+                <ng-template #nameTpl>
+                  <nz-select style="width: 120px" nzShowSearch nzAllowClear nzPlaceHolder="选择用户" [(ngModel)]="uploadImage!.user">
+                    <nz-option
+                      nzCustomContent
+                      *ngFor="let userOption of usersCollection; trackBy: trackUserById"
+                      [nzLabel]="userOption.firstName || null"
+                      [nzValue]="userOption.id"
+                    >
+                      <nz-avatar nzIcon="user" [nzSrc]="userOption.imageUrl"></nz-avatar> {{ userOption.firstName }}
+                    </nz-option>
+                  </nz-select>
+                </ng-template>
+                {{ uploadImage?.user?.login }}
+              </td>
+              <td *ngIf="showRelationship('category')">
+                <div *ngIf="uploadImage?.category?.id">
+                  <a [routerLink]="['../resource-category', uploadImage!.category?.id, 'view']">{{ uploadImage!.category?.title }}</a>
+                </div>
+              </td>
+              <td nzRight="0px">
+                <ng-container *ngIf="!editStatus[uploadImage.id!]?.edit; else saveTpl">
+                  <button nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="行改" (click)="startEdit(uploadImage)">
+                    <i nz-icon [nzType]="'file-text'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="danger"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="删除"
+                    (click)="deleteConfirm(uploadImage.id)"
+                  >
+                    <i nz-icon nzType="close" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="编辑"
+                    [routerLink]="['./', uploadImage.id, 'edit']"
+                  >
+                    <i nz-icon nzType="setting"></i>
+                  </button>
+                </ng-container>
+                <ng-template #saveTpl>
+                  <a (click)="saveEdit(uploadImage)">保存</a>
+                  <a nz-popconfirm nzPopconfirmTitle="是否保存？" (nzOnConfirm)="cancelEdit(uploadImage.id)">取消</a>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>

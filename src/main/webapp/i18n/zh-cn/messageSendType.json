@@ -1,0 +1,10 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "MessageSendType": {
+      "null": "",
+      "EMAIL": "EMAIL",
+      "SMS": "SMS",
+      "WECHAT": "WECHAT"
+    }
+  }
+}

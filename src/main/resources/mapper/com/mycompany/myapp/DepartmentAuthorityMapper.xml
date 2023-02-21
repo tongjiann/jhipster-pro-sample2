@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.myapp.repository.DepartmentAuthorityRepository">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mycompany.myapp.domain.DepartmentAuthority">
+        <id column="id" property="id"/>
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="code" property="code" />
+        <result column="description" property="description" />
+        <result column="create_user_id" property="createUserId" />
+        <result column="create_time" property="createTime" />
+        <result column="removed_at" property="removedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,id,name,code,description,create_user_id,create_time,removed_at
+    </sql>
+</mapper>

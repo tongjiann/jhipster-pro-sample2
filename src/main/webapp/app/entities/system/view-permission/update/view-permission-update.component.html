@@ -1,0 +1,357 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.systemViewPermission.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="viewPermission!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_text"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.text"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.text' | translate"
+        >Text</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="text" id="field_text" [(ngModel)]="viewPermission!.text" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_i18n"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.i18n"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.i18n' | translate"
+        >I 18 N</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="i18n" id="field_i18n" [(ngModel)]="viewPermission!.i18n" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_group"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.group"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.group' | translate"
+        >Group</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="viewPermission!.group" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_link"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.link"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.link' | translate"
+        >Link</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="link" id="field_link" [(ngModel)]="viewPermission!.link" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_externalLink"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.externalLink"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.externalLink' | translate"
+        >External Link</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="externalLink" id="field_externalLink" [(ngModel)]="viewPermission!.externalLink" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_target"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.target"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.target' | translate"
+        >Target</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_target"
+          [(ngModel)]="viewPermission!.target"
+          name="target"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="BLANK" nzLabel="{{ 'jhipsterSampleApplicationApp.TargetType.BLANK' | translate }}"></nz-option>
+          <nz-option nzValue="SELF" nzLabel="{{ 'jhipsterSampleApplicationApp.TargetType.SELF' | translate }}"></nz-option>
+          <nz-option nzValue="PARENT" nzLabel="{{ 'jhipsterSampleApplicationApp.TargetType.PARENT' | translate }}"></nz-option>
+          <nz-option nzValue="TOP" nzLabel="{{ 'jhipsterSampleApplicationApp.TargetType.TOP' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_icon"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.icon"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.icon' | translate"
+        >Icon</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="icon" id="field_icon" [(ngModel)]="viewPermission!.icon" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_disabled"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.disabled"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.disabled' | translate"
+        >Disabled</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="viewPermission!.disabled" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_hide"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.hide"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.hide' | translate"
+        >Hide</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="viewPermission!.hide" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_hideInBreadcrumb"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.hideInBreadcrumb"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.hideInBreadcrumb' | translate"
+        >Hide In Breadcrumb</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="viewPermission!.hideInBreadcrumb" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_shortcut"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.shortcut"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.shortcut' | translate"
+        >Shortcut</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="viewPermission!.shortcut" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_shortcutRoot"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.shortcutRoot"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.shortcutRoot' | translate"
+        >Shortcut Root</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="viewPermission!.shortcutRoot" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_reuse"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.reuse"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.reuse' | translate"
+        >Reuse</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="viewPermission!.reuse" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_code"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.code"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.code' | translate"
+        >Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="code" id="field_code" [(ngModel)]="viewPermission!.code" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_description"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.description"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.description' | translate"
+        >Description</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="description" id="field_description" [(ngModel)]="viewPermission!.description" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_type"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.type"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.type' | translate"
+        >Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select style="width: 200px" id="field_type" [(ngModel)]="viewPermission!.type" name="type" nzAllowClear nzPlaceHolder="Choose">
+          <nz-option nzValue="MENU" nzLabel="{{ 'jhipsterSampleApplicationApp.ViewPermissionType.MENU' | translate }}"></nz-option>
+          <nz-option nzValue="BUTTON" nzLabel="{{ 'jhipsterSampleApplicationApp.ViewPermissionType.BUTTON' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_order"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.order"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.order' | translate"
+        >Order</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="order" id="field_order" [(ngModel)]="viewPermission!.order" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_apiPermissionCodes"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.apiPermissionCodes"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.apiPermissionCodes' | translate"
+        >Api Permission Codes</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input
+          nz-input
+          type="text"
+          name="apiPermissionCodes"
+          id="field_apiPermissionCodes"
+          [(ngModel)]="viewPermission!.apiPermissionCodes"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_componentFile"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.componentFile"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.componentFile' | translate"
+        >Component File</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="componentFile" id="field_componentFile" [(ngModel)]="viewPermission!.componentFile" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_redirect"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.redirect"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.redirect' | translate"
+        >Redirect</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="redirect" id="field_redirect" [(ngModel)]="viewPermission!.redirect" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.systemViewPermission.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="viewPermission!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_departmentAuthority"
+        jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.departmentAuthority"
+        >Department Authority</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 250px"
+          id="field_departmentAuthority"
+          name="departmentAuthority"
+          [(ngModel)]="viewPermission!.departmentAuthority"
+        >
+          <nz-option
+            *ngFor="let departmentAuthorityOption of departmentAuthoritiesCollection; trackBy: trackDepartmentAuthorityById"
+            [nzLabel]="departmentAuthorityOption!.id || null"
+            [nzValue]="departmentAuthorityOption.id"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_parent" jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.parent"
+        >Parent</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-tree-select
+          style="width: 250px"
+          id="field_parent"
+          [nzNodes]="viewPermissionsCollectionNzTreeNodes"
+          name="parent"
+          [(ngModel)]="viewPermission!.parent"
+        >
+        </nz-tree-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

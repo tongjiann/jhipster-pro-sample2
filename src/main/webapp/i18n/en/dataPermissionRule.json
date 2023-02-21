@@ -1,0 +1,39 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "dataPermissionRule": {
+      "home": {
+        "title": "Data Permission Rules",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Data Permission Rule",
+        "createOrEditLabel": "Create or edit a Data Permission Rule",
+        "notFound": "No Data Permission Rules found"
+      },
+      "created": "A new Data Permission Rule is created with identifier {{ param }}",
+      "updated": "A Data Permission Rule is updated with identifier {{ param }}",
+      "deleted": "A Data Permission Rule is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Data Permission Rule {{ id }}?"
+      },
+      "detail": {
+        "title": "Data Permission Rule"
+      },
+      "id": "ID",
+      "permissionId": "Permission Id",
+      "name": "Name",
+      "column": "Column",
+      "conditions": "Conditions",
+      "value": "Value",
+      "disabled": "Disabled",
+      "removedAt": "Removed At",
+      "help": {
+        "permissionId": "菜单ID",
+        "name": "规则名称",
+        "column": "字段",
+        "conditions": "条件",
+        "value": "规则值",
+        "disabled": "禁用状态",
+        "removedAt": "软删除时间"
+      }
+    }
+  }
+}

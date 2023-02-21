@@ -1,0 +1,121 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.settingsDepartmentAuthority.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.settingsDepartmentAuthority.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="departmentAuthority!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_name"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDepartmentAuthority.name"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDepartmentAuthority.help.name' | translate"
+        >Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="name" id="field_name" [(ngModel)]="departmentAuthority!.name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_code"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDepartmentAuthority.code"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDepartmentAuthority.help.code' | translate"
+        >Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="code" id="field_code" [(ngModel)]="departmentAuthority!.code" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_description"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDepartmentAuthority.description"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDepartmentAuthority.help.description' | translate"
+        >Description</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="description" id="field_description" [(ngModel)]="departmentAuthority!.description" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_createUserId"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDepartmentAuthority.createUserId"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDepartmentAuthority.help.createUserId' | translate"
+        >Create User Id</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="createUserId" id="field_createUserId" [(ngModel)]="departmentAuthority!.createUserId" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_createTime"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDepartmentAuthority.createTime"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDepartmentAuthority.help.createTime' | translate"
+        >Create Time</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_createTime" name="createTime" [(ngModel)]="departmentAuthority!.createTime" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDepartmentAuthority.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDepartmentAuthority.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="departmentAuthority!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_department"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDepartmentAuthority.department"
+        >Department</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-tree-select
+          style="width: 250px"
+          id="field_department"
+          [nzNodes]="departmentsCollectionNzTreeNodes"
+          name="department"
+          [(ngModel)]="departmentAuthority!.department"
+        >
+        </nz-tree-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

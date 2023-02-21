@@ -1,0 +1,9 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "AnnoBusinessType": {
+      "null": "",
+      "EMAIL": "EMAIL",
+      "WORKFLOW": "WORKFLOW"
+    }
+  }
+}

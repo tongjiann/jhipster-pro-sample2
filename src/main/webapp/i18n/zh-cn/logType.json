@@ -1,0 +1,9 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "LogType": {
+      "null": "",
+      "LOGIN": "LOGIN",
+      "OPERATE": "OPERATE"
+    }
+  }
+}

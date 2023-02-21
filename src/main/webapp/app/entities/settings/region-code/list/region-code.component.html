@@ -1,0 +1,182 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.home.title">Region Codes</h1>
+      <form nz-form class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadPage()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="regionCodes!" [nzScroll]="{ x: '100%' }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th *ngIf="showField('name')" [nzWidth]="fieldWidth('name')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.name">Name</span>
+            </th>
+            <th *ngIf="showField('areaCode')" [nzWidth]="fieldWidth('areaCode')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.areaCode">Area Code</span>
+            </th>
+            <th *ngIf="showField('cityCode')" [nzWidth]="fieldWidth('cityCode')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.cityCode">City Code</span>
+            </th>
+            <th *ngIf="showField('mergerName')" [nzWidth]="fieldWidth('mergerName')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.mergerName">Merger Name</span>
+            </th>
+            <th *ngIf="showField('shortName')" [nzWidth]="fieldWidth('shortName')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.shortName">Short Name</span>
+            </th>
+            <th *ngIf="showField('zipCode')" [nzWidth]="fieldWidth('zipCode')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.zipCode">Zip Code</span>
+            </th>
+            <th *ngIf="showField('level')" [nzWidth]="fieldWidth('level')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.level">Level</span>
+            </th>
+            <th *ngIf="showField('lng')" [nzWidth]="fieldWidth('lng')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.lng">Lng</span>
+            </th>
+            <th *ngIf="showField('lat')" [nzWidth]="fieldWidth('lat')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.lat">Lat</span>
+            </th>
+            <th *ngIf="showField('removedAt')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.removedAt">Removed At</span>
+            </th>
+            <th [nzWidth]="relationshipWidth('parent')" *ngIf="showRelationship('parent')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.parent">Parent</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-regionCode [ngForOf]="nzTable.data">
+            <ng-template ngFor let-item [ngForOf]="expandDataCache[regionCode.id!]">
+              <tr *ngIf="(item.parent && item.parent.expand) || !item.parent">
+                <td
+                  nzLeft="0px"
+                  nzWidth="48px"
+                  nzShowCheckbox
+                  [(nzChecked)]="mapOfCheckedId[regionCode.id!]"
+                  (nzCheckedChange)="refreshStatus()"
+                ></td>
+                <td
+                  [nzIndentSize]="item.nzAddLevel * 20"
+                  [nzShowExpand]="!!item.children && item.children.length > 0"
+                  [(nzExpand)]="item.expand"
+                  (nzExpandChange)="collapse(expandDataCache[regionCode.id!], item, $event)"
+                >
+                  {{ item.name }}
+                </td>
+                <td *ngIf="showField('areaCode')">
+                  {{ item.areaCode }}
+                </td>
+                <td *ngIf="showField('cityCode')">
+                  {{ item.cityCode }}
+                </td>
+                <td *ngIf="showField('mergerName')">
+                  {{ item.mergerName }}
+                </td>
+                <td *ngIf="showField('shortName')">
+                  {{ item.shortName }}
+                </td>
+                <td *ngIf="showField('zipCode')">
+                  {{ item.zipCode }}
+                </td>
+                <td *ngIf="showField('level')">{{ 'jhipsterSampleApplicationApp.RegionCodeLevel.' + item.level | translate }}</td>
+                <td *ngIf="showField('lng')">
+                  {{ item.lng }}
+                </td>
+                <td *ngIf="showField('lat')">
+                  {{ item.lat }}
+                </td>
+                <td *ngIf="showField('removedAt')">{{ item.removedAt }}</td>
+
+                <td *ngIf="showRelationship('parent')">
+                  <div *ngIf="item.parent.id">
+                    <a [routerLink]="['../region-code', item.parent.id, 'view']">{{ item.parent.name }}</a>
+                  </div>
+                </td>
+                <td>
+                  <button nz-button nz-dropdown [nzDropdownMenu]="menuOperate" [routerLink]="['./', item.id, 'edit']">
+                    编辑<i nz-icon type="down"></i>
+                  </button>
+                  <nz-dropdown-menu #menuOperate="nzDropdownMenu">
+                    <ul nz-menu>
+                      <li nz-menu-item>
+                        <button nz-button nzType="dashed" (click)="deleteConfirm(item.id)">删除</button>
+                      </li>
+                    </ul>
+                  </nz-dropdown-menu>
+                </td>
+              </tr>
+            </ng-template>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>

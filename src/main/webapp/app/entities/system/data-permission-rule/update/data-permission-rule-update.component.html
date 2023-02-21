@@ -1,0 +1,114 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.dataPermissionRule.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.dataPermissionRule.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="dataPermissionRule!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_permissionId"
+        jhiTranslate="jhipsterSampleApplicationApp.dataPermissionRule.permissionId"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.dataPermissionRule.help.permissionId' | translate"
+        >Permission Id</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="permissionId" id="field_permissionId" [(ngModel)]="dataPermissionRule!.permissionId" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_name"
+        jhiTranslate="jhipsterSampleApplicationApp.dataPermissionRule.name"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.dataPermissionRule.help.name' | translate"
+        >Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="name" id="field_name" [(ngModel)]="dataPermissionRule!.name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_column"
+        jhiTranslate="jhipsterSampleApplicationApp.dataPermissionRule.column"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.dataPermissionRule.help.column' | translate"
+        >Column</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="column" id="field_column" [(ngModel)]="dataPermissionRule!.column" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_conditions"
+        jhiTranslate="jhipsterSampleApplicationApp.dataPermissionRule.conditions"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.dataPermissionRule.help.conditions' | translate"
+        >Conditions</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="conditions" id="field_conditions" [(ngModel)]="dataPermissionRule!.conditions" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_value"
+        jhiTranslate="jhipsterSampleApplicationApp.dataPermissionRule.value"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.dataPermissionRule.help.value' | translate"
+        >Value</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="value" id="field_value" [(ngModel)]="dataPermissionRule!.value" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_disabled"
+        jhiTranslate="jhipsterSampleApplicationApp.dataPermissionRule.disabled"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.dataPermissionRule.help.disabled' | translate"
+        >Disabled</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="dataPermissionRule!.disabled" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.dataPermissionRule.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.dataPermissionRule.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="dataPermissionRule!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

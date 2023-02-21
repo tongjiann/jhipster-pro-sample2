@@ -1,0 +1,91 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.filesResourceCategory.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.filesResourceCategory.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="resourceCategory!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_title"
+        jhiTranslate="jhipsterSampleApplicationApp.filesResourceCategory.title"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesResourceCategory.help.title' | translate"
+        >Title</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="title" id="field_title" [(ngModel)]="resourceCategory!.title" maxlength="40" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_code"
+        jhiTranslate="jhipsterSampleApplicationApp.filesResourceCategory.code"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesResourceCategory.help.code' | translate"
+        >Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="code" id="field_code" [(ngModel)]="resourceCategory!.code" maxlength="20" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_sort"
+        jhiTranslate="jhipsterSampleApplicationApp.filesResourceCategory.sort"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesResourceCategory.help.sort' | translate"
+        >Sort</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="sort" id="field_sort" [(ngModel)]="resourceCategory!.sort" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.filesResourceCategory.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesResourceCategory.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="resourceCategory!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_parent" jhiTranslate="jhipsterSampleApplicationApp.filesResourceCategory.parent"
+        >Parent</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-tree-select
+          style="width: 250px"
+          id="field_parent"
+          [nzNodes]="resourceCategoriesCollectionNzTreeNodes"
+          name="parent"
+          [(ngModel)]="resourceCategory!.parent"
+        >
+        </nz-tree-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

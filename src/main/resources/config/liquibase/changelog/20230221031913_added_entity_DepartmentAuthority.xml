@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity DepartmentAuthority.
+    -->
+    
+    <changeSet id="20230221031913-1" author="jhipster">
+        <createTable tableName="department_authority" remarks="部门角色">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)" remarks="名称">
+                <constraints nullable="true" />
+            </column>
+            <column name="code" type="varchar(255)" remarks="代码">
+                <constraints nullable="true" />
+            </column>
+            <column name="description" type="varchar(255)" remarks="说明">
+                <constraints nullable="true" />
+            </column>
+            <column name="create_user_id" type="bigint" remarks="创建用户 Id">
+                <constraints nullable="true" />
+            </column>
+            <column name="create_time" type="${datetimeType}" remarks="创建时间">
+                <constraints nullable="true" />
+            </column>
+            <column name="removed_at" type="date" remarks="软删除时间">
+                <constraints nullable="true" />
+            </column>
+            <column name="department_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here-->
+        </createTable>
+        <dropDefaultValue tableName="department_authority" columnName="create_time" columnDataType="${datetimeType}"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+
+</databaseChangeLog>

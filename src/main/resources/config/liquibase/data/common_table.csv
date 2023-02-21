@@ -1,0 +1,26 @@
+id;name;entity_name;table_name;clazz_name;system;generated;creat_at;generate_at;generate_class_at;description;creator_id;business_type_id;tree_table;edit_in_modal;search_form
+1;用户表;User;jhi_user;User;true;true;2019-10-30 05:49:43.000000000;2019-10-29 16:15:50.000000000;2019-10-29 17:38:10.000000000;用户表;1;1;false;false;true
+2;历史任务实例;HistoryTaskInstance;t_his_task_ins;HistoryTaskInstance;true;true;2019-10-30 05:49:43.000000000;2019-10-30 05:49:43.000000000;2019-10-30 05:49:43.000000000;历史任务实例;1;8;false;false;true
+3;角色;Authority;jhi_authority;Authority;true;true;2020-09-26T01:37:18;2020-09-26T01:37:18;2020-09-26T01:37:18;角色;1;1;true;false;false
+4;部门角色;DepartmentAuthority;department_authority;DepartmentAuthority;true;true;2023-02-20T11:15:35;2023-02-20T11:15:35;2023-02-20T11:15:35;部门角色;1;4;false;false;false
+5;短信消息;SmsMessage;sms_message;SmsMessage;true;true;2023-02-20T22:55:00;2023-02-20T22:55:00;2023-02-20T22:55:00;短信消息;1;1;false;false;false
+6;对象存储配置;OssConfig;oss_config;OssConfig;true;true;2023-02-20T20:23:01;2023-02-20T20:23:01;2023-02-20T20:23:01;对象存储配置;1;2;false;false;false
+7;API权限;ApiPermission;api_permission;ApiPermission;true;true;2023-02-20T12:15:29;2023-02-20T12:15:29;2023-02-20T12:15:29;API权限\n菜单或按钮下有相关的api权限;1;1;true;false;false
+8;上传图片;UploadImage;upload_image;UploadImage;true;true;2023-02-20T20:40:42;2023-02-20T20:40:42;2023-02-20T20:40:42;上传图片;1;2;false;false;false
+9;短信配置;SmsConfig;sms_config;SmsConfig;true;true;2023-02-21T00:08:42;2023-02-21T00:08:42;2023-02-21T00:08:42;短信配置;1;2;false;false;false
+10;报表存储;UReportFile;u_report_file;UReportFile;true;true;2023-02-20T17:36:42;2023-02-20T17:36:42;2023-02-20T17:36:42;报表存储;1;10;false;false;false
+11;通告阅读记录;AnnouncementRecord;announcement_record;AnnouncementRecord;true;true;2023-02-20T05:04:56;2023-02-20T05:04:56;2023-02-20T05:04:56;通告阅读记录;1;1;false;false;false
+12;部门;Department;department;Department;true;true;2023-02-20T22:17:55;2023-02-20T22:17:55;2023-02-20T22:17:55;部门;1;4;true;false;false
+13;消息模板;SmsTemplate;sms_template;SmsTemplate;true;true;2023-02-20T18:01:57;2023-02-20T18:01:57;2023-02-20T18:01:57;消息模板;1;1;false;false;false
+14;网站配置;SiteConfig;site_config;SiteConfig;true;true;2023-02-20T22:45:01;2023-02-20T22:45:01;2023-02-20T22:45:01;网站配置;1;1;false;false;false
+15;系统通告;Announcement;announcement;Announcement;true;true;2023-02-20T09:51:38;2023-02-20T09:51:38;2023-02-20T09:51:38;系统通告;1;1;false;false;false
+16;业务类型;BusinessType;business_type;BusinessType;true;true;2023-02-20T20:56:33;2023-02-20T20:56:33;2023-02-20T20:56:33;业务类型;1;4;false;false;false
+17;系统日志;SysLog;sys_log;SysLog;true;true;2023-02-20T20:57:59;2023-02-20T20:57:59;2023-02-20T20:57:59;系统日志;1;1;false;false;false
+18;可视权限;ViewPermission;view_permission;ViewPermission;true;true;2023-02-20T10:54:04;2023-02-20T10:54:04;2023-02-20T10:54:04;可视权限\n权限分为菜单权限、按钮权限等\n;1;1;true;false;false
+19;数据权限规则;DataPermissionRule;data_permission_rule;DataPermissionRule;true;true;2023-02-21T00:38:49;2023-02-21T00:38:49;2023-02-21T00:38:49;数据权限规则;1;1;false;false;false
+20;填充规则;SysFillRule;sys_fill_rule;SysFillRule;true;true;2023-02-20T23:39:11;2023-02-20T23:39:11;2023-02-20T23:39:11;填充规则;1;4;false;false;false
+21;资源分类;ResourceCategory;resource_category;ResourceCategory;true;true;2023-02-20T12:38:37;2023-02-20T12:38:37;2023-02-20T12:38:37;资源分类;1;2;true;false;false
+22;上传文件;UploadFile;upload_file;UploadFile;true;true;2023-02-20T05:43:26;2023-02-20T05:43:26;2023-02-20T05:43:26;上传文件;1;2;false;false;false
+23;岗位;Position;position;Position;true;true;2023-02-20T05:23:38;2023-02-20T05:23:38;2023-02-20T05:23:38;岗位\n@author jhipster.pro;1;4;false;false;false
+24;数据字典;DataDictionary;data_dictionary;DataDictionary;true;true;2023-02-20T17:56:41;2023-02-20T17:56:41;2023-02-20T17:56:41;数据字典;1;4;true;false;false
+25;行政区划码;RegionCode;region_code;RegionCode;true;true;2023-02-20T07:33:37;2023-02-20T07:33:37;2023-02-20T07:33:37;行政区划码;1;4;true;false;false

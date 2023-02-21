@@ -1,0 +1,89 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.reportUReportFile.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.reportUReportFile.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="uReportFile!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_name"
+        jhiTranslate="jhipsterSampleApplicationApp.reportUReportFile.name"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.reportUReportFile.help.name' | translate"
+        >Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="name" id="field_name" [(ngModel)]="uReportFile!.name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_createAt"
+        jhiTranslate="jhipsterSampleApplicationApp.reportUReportFile.createAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.reportUReportFile.help.createAt' | translate"
+        >Create At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_createAt" name="createAt" [(ngModel)]="uReportFile!.createAt" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_updateAt"
+        jhiTranslate="jhipsterSampleApplicationApp.reportUReportFile.updateAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.reportUReportFile.help.updateAt' | translate"
+        >Update At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_updateAt" name="updateAt" [(ngModel)]="uReportFile!.updateAt" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.reportUReportFile.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.reportUReportFile.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="uReportFile!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item style="width: 100%">
+      <nz-collapse nzAccordion [nzBordered]="false">
+        <nz-collapse-panel [nzHeader]="'jhipsterSampleApplicationApp.reportUReportFile.content' | translate" [nzActive]="false">
+          <nz-form-control [nzSm]="24" [nzXs]="24">
+            <editor
+              id="field_content"
+              placeholder=" 'jhipsterSampleApplicationApp.reportUReportFile.help.content' | translate"
+              [(ngModel)]="uReportFile!.content"
+              name="content"
+            ></editor>
+          </nz-form-control>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

@@ -1,0 +1,343 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="jhipsterSampleApplicationApp.sysLog.home.title">Sys Logs</h1>
+      <form nz-form class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadPage()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="sysLogs!" [nzScroll]="{ x: '100%' }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th
+              nzLeft="48px"
+              nzWidth="52px"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+            >
+              <span jhiTranslate="global.field.id">ID</span>
+              <i
+                class="ant-table-filter-icon"
+                nz-icon
+                nz-dropdown
+                #dropdown="nzDropdown"
+                nzType="search"
+                [nzDropdownMenu]="idmenu"
+                [class.ant-table-filter-open]="dropdown.nzVisible"
+                nzTrigger="click"
+                nzPlacement="bottomRight"
+                [nzClickHide]="false"
+                nzTableFilter
+              >
+              </i>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.logType"
+              (nzSortOrderChange)="sort('logType', $event)"
+              nzCustomFilter
+              *ngIf="showField('logType')"
+              [nzWidth]="fieldWidth('logType')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.logType">Log Type</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.logContent"
+              (nzSortOrderChange)="sort('logContent', $event)"
+              nzCustomFilter
+              *ngIf="showField('logContent')"
+              [nzWidth]="fieldWidth('logContent')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.logContent">Log Content</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.operateType"
+              (nzSortOrderChange)="sort('operateType', $event)"
+              nzCustomFilter
+              *ngIf="showField('operateType')"
+              [nzWidth]="fieldWidth('operateType')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.operateType">Operate Type</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.userid"
+              (nzSortOrderChange)="sort('userid', $event)"
+              nzCustomFilter
+              *ngIf="showField('userid')"
+              [nzWidth]="fieldWidth('userid')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.userid">Userid</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.username"
+              (nzSortOrderChange)="sort('username', $event)"
+              nzCustomFilter
+              *ngIf="showField('username')"
+              [nzWidth]="fieldWidth('username')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.username">Username</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.ip"
+              (nzSortOrderChange)="sort('ip', $event)"
+              nzCustomFilter
+              *ngIf="showField('ip')"
+              [nzWidth]="fieldWidth('ip')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.ip">Ip</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.method"
+              (nzSortOrderChange)="sort('method', $event)"
+              nzCustomFilter
+              *ngIf="showField('method')"
+              [nzWidth]="fieldWidth('method')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.method">Method</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.requestUrl"
+              (nzSortOrderChange)="sort('requestUrl', $event)"
+              nzCustomFilter
+              *ngIf="showField('requestUrl')"
+              [nzWidth]="fieldWidth('requestUrl')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.requestUrl">Request Url</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.requestParam"
+              (nzSortOrderChange)="sort('requestParam', $event)"
+              nzCustomFilter
+              *ngIf="showField('requestParam')"
+              [nzWidth]="fieldWidth('requestParam')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.requestParam">Request Param</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.requestType"
+              (nzSortOrderChange)="sort('requestType', $event)"
+              nzCustomFilter
+              *ngIf="showField('requestType')"
+              [nzWidth]="fieldWidth('requestType')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.requestType">Request Type</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.costTime"
+              (nzSortOrderChange)="sort('costTime', $event)"
+              nzCustomFilter
+              *ngIf="showField('costTime')"
+              [nzWidth]="fieldWidth('costTime')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.costTime">Cost Time</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.removedAt"
+              (nzSortOrderChange)="sort('removedAt', $event)"
+              nzCustomFilter
+              *ngIf="showField('removedAt')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.sysLog.removedAt">Removed At</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-sysLog [ngForOf]="nzTable.data">
+            <tr>
+              <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="mapOfCheckedId[sysLog.id!]" (nzCheckedChange)="refreshStatus()"></td>
+              <td nzLeft="48px">{{ sysLog.id }}</td>
+              <td *ngIf="showField('logType')" jhiTranslate="{{ 'jhipsterSampleApplicationApp.LogType.' + sysLog.logType }}">
+                {{ sysLog.logType }}
+              </td>
+              <td *ngIf="showField('logContent')">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else namelogContentTpl">
+                  {{ sysLog.logContent }}
+                </ng-container>
+                <ng-template #namelogContentTpl>
+                  <input nz-input type="text" name="logContent" [(ngModel)]="sysLog.logContent" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('operateType')">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else nameoperateTypeTpl">
+                  {{ sysLog.operateType }}
+                </ng-container>
+                <ng-template #nameoperateTypeTpl>
+                  <nz-input-number name="operateType" [(ngModel)]="sysLog.operateType"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('userid')">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else nameuseridTpl">
+                  {{ sysLog.userid }}
+                </ng-container>
+                <ng-template #nameuseridTpl>
+                  <input nz-input type="text" name="userid" [(ngModel)]="sysLog.userid" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('username')">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else nameusernameTpl">
+                  {{ sysLog.username }}
+                </ng-container>
+                <ng-template #nameusernameTpl>
+                  <input nz-input type="text" name="username" [(ngModel)]="sysLog.username" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('ip')">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else nameipTpl">
+                  {{ sysLog.ip }}
+                </ng-container>
+                <ng-template #nameipTpl>
+                  <input nz-input type="text" name="ip" [(ngModel)]="sysLog.ip" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('method')">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else namemethodTpl">
+                  {{ sysLog.method }}
+                </ng-container>
+                <ng-template #namemethodTpl>
+                  <input nz-input type="text" name="method" [(ngModel)]="sysLog.method" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('requestUrl')">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else namerequestUrlTpl">
+                  {{ sysLog.requestUrl }}
+                </ng-container>
+                <ng-template #namerequestUrlTpl>
+                  <input nz-input type="text" name="requestUrl" [(ngModel)]="sysLog.requestUrl" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('requestType')">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else namerequestTypeTpl">
+                  {{ sysLog.requestType }}
+                </ng-container>
+                <ng-template #namerequestTypeTpl>
+                  <input nz-input type="text" name="requestType" [(ngModel)]="sysLog.requestType" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('costTime')">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else namecostTimeTpl">
+                  {{ sysLog.costTime }}
+                </ng-container>
+                <ng-template #namecostTimeTpl>
+                  <nz-input-number name="costTime" [(ngModel)]="sysLog.costTime"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('removedAt')">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else nameremovedAtTpl">
+                  {{ sysLog.removedAt | date: 'yyyy-MM-dd' }}
+                </ng-container>
+                <ng-template #nameremovedAtTpl>
+                  <nz-date-picker [(ngModel)]="sysLog.removedAt"></nz-date-picker>
+                </ng-template>
+              </td>
+              <td nzRight="0px">
+                <ng-container *ngIf="!editStatus[sysLog.id!]?.edit; else saveTpl">
+                  <button nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="行改" (click)="startEdit(sysLog)">
+                    <i nz-icon [nzType]="'file-text'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+                  </button>
+                  <button nz-button nzType="danger" nzShape="circle" nz-tooltip nzTooltipTitle="删除" (click)="deleteConfirm(sysLog.id)">
+                    <i nz-icon nzType="close" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="编辑"
+                    [routerLink]="['./', sysLog.id, 'edit']"
+                  >
+                    <i nz-icon nzType="setting"></i>
+                  </button>
+                </ng-container>
+                <ng-template #saveTpl>
+                  <a (click)="saveEdit(sysLog)">保存</a>
+                  <a nz-popconfirm nzPopconfirmTitle="是否保存？" (nzOnConfirm)="cancelEdit(sysLog.id)">取消</a>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>

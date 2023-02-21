@@ -1,0 +1,333 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.home.title">Oss Configs</h1>
+      <form nz-form class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadPage()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="ossConfigs!" [nzScroll]="{ x: '100%' }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th
+              nzLeft="48px"
+              nzWidth="52px"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+            >
+              <span jhiTranslate="global.field.id">ID</span>
+              <i
+                class="ant-table-filter-icon"
+                nz-icon
+                nz-dropdown
+                #dropdown="nzDropdown"
+                nzType="search"
+                [nzDropdownMenu]="idmenu"
+                [class.ant-table-filter-open]="dropdown.nzVisible"
+                nzTrigger="click"
+                nzPlacement="bottomRight"
+                [nzClickHide]="false"
+                nzTableFilter
+              >
+              </i>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.provider"
+              (nzSortOrderChange)="sort('provider', $event)"
+              nzCustomFilter
+              *ngIf="showField('provider')"
+              [nzWidth]="fieldWidth('provider')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.provider">Provider</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.ossCode"
+              (nzSortOrderChange)="sort('ossCode', $event)"
+              nzCustomFilter
+              *ngIf="showField('ossCode')"
+              [nzWidth]="fieldWidth('ossCode')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.ossCode">Oss Code</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.endpoint"
+              (nzSortOrderChange)="sort('endpoint', $event)"
+              nzCustomFilter
+              *ngIf="showField('endpoint')"
+              [nzWidth]="fieldWidth('endpoint')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.endpoint">Endpoint</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.accessKey"
+              (nzSortOrderChange)="sort('accessKey', $event)"
+              nzCustomFilter
+              *ngIf="showField('accessKey')"
+              [nzWidth]="fieldWidth('accessKey')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.accessKey">Access Key</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.secretKey"
+              (nzSortOrderChange)="sort('secretKey', $event)"
+              nzCustomFilter
+              *ngIf="showField('secretKey')"
+              [nzWidth]="fieldWidth('secretKey')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.secretKey">Secret Key</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.bucketName"
+              (nzSortOrderChange)="sort('bucketName', $event)"
+              nzCustomFilter
+              *ngIf="showField('bucketName')"
+              [nzWidth]="fieldWidth('bucketName')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.bucketName">Bucket Name</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.appId"
+              (nzSortOrderChange)="sort('appId', $event)"
+              nzCustomFilter
+              *ngIf="showField('appId')"
+              [nzWidth]="fieldWidth('appId')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.appId">App Id</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.region"
+              (nzSortOrderChange)="sort('region', $event)"
+              nzCustomFilter
+              *ngIf="showField('region')"
+              [nzWidth]="fieldWidth('region')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.region">Region</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.remark"
+              (nzSortOrderChange)="sort('remark', $event)"
+              nzCustomFilter
+              *ngIf="showField('remark')"
+              [nzWidth]="fieldWidth('remark')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.remark">Remark</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.enabled"
+              (nzSortOrderChange)="sort('enabled', $event)"
+              nzCustomFilter
+              *ngIf="showField('enabled')"
+              [nzWidth]="fieldWidth('enabled')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.enabled">Enabled</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.removedAt"
+              (nzSortOrderChange)="sort('removedAt', $event)"
+              nzCustomFilter
+              *ngIf="showField('removedAt')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.filesOssConfig.removedAt">Removed At</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-ossConfig [ngForOf]="nzTable.data">
+            <tr>
+              <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="mapOfCheckedId[ossConfig.id!]" (nzCheckedChange)="refreshStatus()"></td>
+              <td nzLeft="48px">{{ ossConfig.id }}</td>
+              <td *ngIf="showField('provider')" jhiTranslate="{{ 'jhipsterSampleApplicationApp.OssProvider.' + ossConfig.provider }}">
+                {{ ossConfig.provider }}
+              </td>
+              <td *ngIf="showField('ossCode')">
+                <ng-container *ngIf="!editStatus[ossConfig.id!]?.edit; else nameossCodeTpl">
+                  {{ ossConfig.ossCode }}
+                </ng-container>
+                <ng-template #nameossCodeTpl>
+                  <input nz-input type="text" name="ossCode" [(ngModel)]="ossConfig.ossCode" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('endpoint')">
+                <ng-container *ngIf="!editStatus[ossConfig.id!]?.edit; else nameendpointTpl">
+                  {{ ossConfig.endpoint }}
+                </ng-container>
+                <ng-template #nameendpointTpl>
+                  <input nz-input type="text" name="endpoint" [(ngModel)]="ossConfig.endpoint" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('accessKey')">
+                <ng-container *ngIf="!editStatus[ossConfig.id!]?.edit; else nameaccessKeyTpl">
+                  {{ ossConfig.accessKey }}
+                </ng-container>
+                <ng-template #nameaccessKeyTpl>
+                  <input nz-input type="text" name="accessKey" [(ngModel)]="ossConfig.accessKey" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('secretKey')">
+                <ng-container *ngIf="!editStatus[ossConfig.id!]?.edit; else namesecretKeyTpl">
+                  {{ ossConfig.secretKey }}
+                </ng-container>
+                <ng-template #namesecretKeyTpl>
+                  <input nz-input type="text" name="secretKey" [(ngModel)]="ossConfig.secretKey" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('bucketName')">
+                <ng-container *ngIf="!editStatus[ossConfig.id!]?.edit; else namebucketNameTpl">
+                  {{ ossConfig.bucketName }}
+                </ng-container>
+                <ng-template #namebucketNameTpl>
+                  <input nz-input type="text" name="bucketName" [(ngModel)]="ossConfig.bucketName" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('appId')">
+                <ng-container *ngIf="!editStatus[ossConfig.id!]?.edit; else nameappIdTpl">
+                  {{ ossConfig.appId }}
+                </ng-container>
+                <ng-template #nameappIdTpl>
+                  <input nz-input type="text" name="appId" [(ngModel)]="ossConfig.appId" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('region')">
+                <ng-container *ngIf="!editStatus[ossConfig.id!]?.edit; else nameregionTpl">
+                  {{ ossConfig.region }}
+                </ng-container>
+                <ng-template #nameregionTpl>
+                  <input nz-input type="text" name="region" [(ngModel)]="ossConfig.region" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('remark')">
+                <ng-container *ngIf="!editStatus[ossConfig.id!]?.edit; else nameremarkTpl">
+                  {{ ossConfig.remark }}
+                </ng-container>
+                <ng-template #nameremarkTpl>
+                  <input nz-input type="text" name="remark" [(ngModel)]="ossConfig.remark" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('enabled')">
+                <nz-switch
+                  [(ngModel)]="ossConfig!.enabled"
+                  nzCheckedChildren="是"
+                  nzUnCheckedChildren="否"
+                  [nzDisabled]="!editStatus[ossConfig.id!].edit"
+                ></nz-switch>
+              </td>
+              <td *ngIf="showField('removedAt')">
+                <ng-container *ngIf="!editStatus[ossConfig.id!]?.edit; else nameremovedAtTpl">
+                  {{ ossConfig.removedAt | date: 'yyyy-MM-dd' }}
+                </ng-container>
+                <ng-template #nameremovedAtTpl>
+                  <nz-date-picker [(ngModel)]="ossConfig.removedAt"></nz-date-picker>
+                </ng-template>
+              </td>
+              <td nzRight="0px">
+                <ng-container *ngIf="!editStatus[ossConfig.id!]?.edit; else saveTpl">
+                  <button nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="行改" (click)="startEdit(ossConfig)">
+                    <i nz-icon [nzType]="'file-text'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+                  </button>
+                  <button nz-button nzType="danger" nzShape="circle" nz-tooltip nzTooltipTitle="删除" (click)="deleteConfirm(ossConfig.id)">
+                    <i nz-icon nzType="close" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="编辑"
+                    [routerLink]="['./', ossConfig.id, 'edit']"
+                  >
+                    <i nz-icon nzType="setting"></i>
+                  </button>
+                </ng-container>
+                <ng-template #saveTpl>
+                  <a (click)="saveEdit(ossConfig)">保存</a>
+                  <a nz-popconfirm nzPopconfirmTitle="是否保存？" (nzOnConfirm)="cancelEdit(ossConfig.id)">取消</a>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>

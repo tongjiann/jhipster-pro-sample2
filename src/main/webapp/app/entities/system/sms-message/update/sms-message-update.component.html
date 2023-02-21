@@ -1,0 +1,188 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.smsMessage.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.smsMessage.id">ID</nz-form-label>
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="smsMessage!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_title"
+        jhiTranslate="jhipsterSampleApplicationApp.smsMessage.title"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsMessage.help.title' | translate"
+        >Title</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="title" id="field_title" [(ngModel)]="smsMessage!.title" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_sendType"
+        jhiTranslate="jhipsterSampleApplicationApp.smsMessage.sendType"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsMessage.help.sendType' | translate"
+        >Send Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_sendType"
+          [(ngModel)]="smsMessage!.sendType"
+          name="sendType"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="EMAIL" nzLabel="{{ 'jhipsterSampleApplicationApp.MessageSendType.EMAIL' | translate }}"></nz-option>
+          <nz-option nzValue="SMS" nzLabel="{{ 'jhipsterSampleApplicationApp.MessageSendType.SMS' | translate }}"></nz-option>
+          <nz-option nzValue="WECHAT" nzLabel="{{ 'jhipsterSampleApplicationApp.MessageSendType.WECHAT' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_receiver"
+        jhiTranslate="jhipsterSampleApplicationApp.smsMessage.receiver"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsMessage.help.receiver' | translate"
+        >Receiver</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="receiver" id="field_receiver" [(ngModel)]="smsMessage!.receiver" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_params"
+        jhiTranslate="jhipsterSampleApplicationApp.smsMessage.params"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsMessage.help.params' | translate"
+        >Params</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="params" id="field_params" [(ngModel)]="smsMessage!.params" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_sendTime"
+        jhiTranslate="jhipsterSampleApplicationApp.smsMessage.sendTime"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsMessage.help.sendTime' | translate"
+        >Send Time</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_sendTime" name="sendTime" [(ngModel)]="smsMessage!.sendTime" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_sendStatus"
+        jhiTranslate="jhipsterSampleApplicationApp.smsMessage.sendStatus"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsMessage.help.sendStatus' | translate"
+        >Send Status</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_sendStatus"
+          [(ngModel)]="smsMessage!.sendStatus"
+          name="sendStatus"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="WAITING" nzLabel="{{ 'jhipsterSampleApplicationApp.SendStatus.WAITING' | translate }}"></nz-option>
+          <nz-option nzValue="SUCCESS" nzLabel="{{ 'jhipsterSampleApplicationApp.SendStatus.SUCCESS' | translate }}"></nz-option>
+          <nz-option nzValue="FAILURE" nzLabel="{{ 'jhipsterSampleApplicationApp.SendStatus.FAILURE' | translate }}"></nz-option>
+          <nz-option nzValue="NOT_TRY" nzLabel="{{ 'jhipsterSampleApplicationApp.SendStatus.NOT_TRY' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_retryNum"
+        jhiTranslate="jhipsterSampleApplicationApp.smsMessage.retryNum"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsMessage.help.retryNum' | translate"
+        >Retry Num</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="retryNum" id="field_retryNum" [(ngModel)]="smsMessage!.retryNum" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_failResult"
+        jhiTranslate="jhipsterSampleApplicationApp.smsMessage.failResult"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsMessage.help.failResult' | translate"
+        >Fail Result</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="failResult" id="field_failResult" [(ngModel)]="smsMessage!.failResult" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_remark"
+        jhiTranslate="jhipsterSampleApplicationApp.smsMessage.remark"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsMessage.help.remark' | translate"
+        >Remark</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="remark" id="field_remark" [(ngModel)]="smsMessage!.remark" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.smsMessage.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsMessage.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="smsMessage!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item style="width: 100%">
+      <nz-collapse nzAccordion [nzBordered]="false">
+        <nz-collapse-panel [nzHeader]="'jhipsterSampleApplicationApp.smsMessage.content' | translate" [nzActive]="false">
+          <nz-form-control [nzSm]="24" [nzXs]="24">
+            <editor
+              id="field_content"
+              placeholder=" 'jhipsterSampleApplicationApp.smsMessage.help.content' | translate"
+              [(ngModel)]="smsMessage!.content"
+              name="content"
+            ></editor>
+          </nz-form-control>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

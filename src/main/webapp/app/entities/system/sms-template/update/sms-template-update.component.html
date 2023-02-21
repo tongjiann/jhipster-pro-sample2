@@ -1,0 +1,103 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.smsTemplate.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.smsTemplate.id">ID</nz-form-label>
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="smsTemplate!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_name"
+        jhiTranslate="jhipsterSampleApplicationApp.smsTemplate.name"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsTemplate.help.name' | translate"
+        >Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="name" id="field_name" [(ngModel)]="smsTemplate!.name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_code"
+        jhiTranslate="jhipsterSampleApplicationApp.smsTemplate.code"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsTemplate.help.code' | translate"
+        >Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="code" id="field_code" [(ngModel)]="smsTemplate!.code" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_type"
+        jhiTranslate="jhipsterSampleApplicationApp.smsTemplate.type"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsTemplate.help.type' | translate"
+        >Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select style="width: 200px" id="field_type" [(ngModel)]="smsTemplate!.type" name="type" nzAllowClear nzPlaceHolder="Choose">
+          <nz-option nzValue="EMAIL" nzLabel="{{ 'jhipsterSampleApplicationApp.MessageSendType.EMAIL' | translate }}"></nz-option>
+          <nz-option nzValue="SMS" nzLabel="{{ 'jhipsterSampleApplicationApp.MessageSendType.SMS' | translate }}"></nz-option>
+          <nz-option nzValue="WECHAT" nzLabel="{{ 'jhipsterSampleApplicationApp.MessageSendType.WECHAT' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_content"
+        jhiTranslate="jhipsterSampleApplicationApp.smsTemplate.content"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsTemplate.help.content' | translate"
+        >Content</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="content" id="field_content" [(ngModel)]="smsTemplate!.content" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_testJson"
+        jhiTranslate="jhipsterSampleApplicationApp.smsTemplate.testJson"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsTemplate.help.testJson' | translate"
+        >Test Json</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="testJson" id="field_testJson" [(ngModel)]="smsTemplate!.testJson" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.smsTemplate.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.smsTemplate.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="smsTemplate!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

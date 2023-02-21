@@ -1,0 +1,236 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.filesUploadImage.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="uploadImage!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_fullName"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.fullName"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.fullName' | translate"
+        >Full Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="fullName" id="field_fullName" [(ngModel)]="uploadImage!.fullName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_name"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.name"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.name' | translate"
+        >Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="name" id="field_name" [(ngModel)]="uploadImage!.name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_ext"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.ext"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.ext' | translate"
+        >Ext</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="ext" id="field_ext" [(ngModel)]="uploadImage!.ext" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_type"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.type"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.type' | translate"
+        >Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="type" id="field_type" [(ngModel)]="uploadImage!.type" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_url"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.url"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.url' | translate"
+        >Url</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="url" id="field_url" [(ngModel)]="uploadImage!.url" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_path"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.path"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.path' | translate"
+        >Path</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="path" id="field_path" [(ngModel)]="uploadImage!.path" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_folder"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.folder"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.folder' | translate"
+        >Folder</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="folder" id="field_folder" [(ngModel)]="uploadImage!.folder" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_entityName"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.entityName"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.entityName' | translate"
+        >Entity Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="entityName" id="field_entityName" [(ngModel)]="uploadImage!.entityName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_createAt"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.createAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.createAt' | translate"
+        >Create At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_createAt" name="createAt" [(ngModel)]="uploadImage!.createAt" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_fileSize"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.fileSize"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.fileSize' | translate"
+        >File Size</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="fileSize" id="field_fileSize" [(ngModel)]="uploadImage!.fileSize" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_smartUrl"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.smartUrl"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.smartUrl' | translate"
+        >Smart Url</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="smartUrl" id="field_smartUrl" [(ngModel)]="uploadImage!.smartUrl" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_mediumUrl"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.mediumUrl"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.mediumUrl' | translate"
+        >Medium Url</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="mediumUrl" id="field_mediumUrl" [(ngModel)]="uploadImage!.mediumUrl" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_referenceCount"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.referenceCount"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.referenceCount' | translate"
+        >Reference Count</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="referenceCount" id="field_referenceCount" [(ngModel)]="uploadImage!.referenceCount" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesUploadImage.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="uploadImage!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_user" jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.user"
+        >User</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select style="width: 250px" id="field_user" name="user" [(ngModel)]="uploadImage!.user">
+          <nz-option
+            *ngFor="let userOption of usersCollection; trackBy: trackUserById"
+            [nzLabel]="userOption!.login || null"
+            [nzValue]="userOption.id"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_category" jhiTranslate="jhipsterSampleApplicationApp.filesUploadImage.category"
+        >Category</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-tree-select
+          style="width: 250px"
+          id="field_category"
+          [nzNodes]="resourceCategoriesCollectionNzTreeNodes"
+          name="category"
+          [(ngModel)]="uploadImage!.category"
+        >
+        </nz-tree-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

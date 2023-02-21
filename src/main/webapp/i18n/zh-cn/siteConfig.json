@@ -1,0 +1,37 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "siteConfig": {
+      "home": {
+        "title": "Site Configs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "创建新 Site Config",
+        "createOrEditLabel": "创建或编辑 Site Config",
+        "notFound": "No Site Configs found"
+      },
+      "created": "Site Config {{ param }} 创建成功",
+      "updated": "Site Config {{ param }} 更新成功",
+      "deleted": "Site Config {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Site Config {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Site Config"
+      },
+      "id": "ID",
+      "title": "Title",
+      "remark": "Remark",
+      "fieldName": "Field Name",
+      "fieldValue": "Field Value",
+      "fieldType": "Field Type",
+      "removedAt": "Removed At",
+      "help": {
+        "title": "标题",
+        "remark": "说明",
+        "fieldName": "属性名",
+        "fieldValue": "属性值",
+        "fieldType": "属性类型",
+        "removedAt": "软删除时间"
+      }
+    }
+  }
+}

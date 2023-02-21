@@ -1,0 +1,181 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.sysLog.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.sysLog.id">ID</nz-form-label>
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="sysLog!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_logType"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.logType"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.logType' | translate"
+        >Log Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select style="width: 200px" id="field_logType" [(ngModel)]="sysLog!.logType" name="logType" nzAllowClear nzPlaceHolder="Choose">
+          <nz-option nzValue="LOGIN" nzLabel="{{ 'jhipsterSampleApplicationApp.LogType.LOGIN' | translate }}"></nz-option>
+          <nz-option nzValue="OPERATE" nzLabel="{{ 'jhipsterSampleApplicationApp.LogType.OPERATE' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_logContent"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.logContent"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.logContent' | translate"
+        >Log Content</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="logContent" id="field_logContent" [(ngModel)]="sysLog!.logContent" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_operateType"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.operateType"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.operateType' | translate"
+        >Operate Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="operateType" id="field_operateType" [(ngModel)]="sysLog!.operateType" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_userid"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.userid"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.userid' | translate"
+        >Userid</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="userid" id="field_userid" [(ngModel)]="sysLog!.userid" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_username"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.username"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.username' | translate"
+        >Username</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="username" id="field_username" [(ngModel)]="sysLog!.username" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_ip"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.ip"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.ip' | translate"
+        >Ip</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="ip" id="field_ip" [(ngModel)]="sysLog!.ip" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_method"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.method"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.method' | translate"
+        >Method</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="method" id="field_method" [(ngModel)]="sysLog!.method" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_requestUrl"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.requestUrl"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.requestUrl' | translate"
+        >Request Url</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="requestUrl" id="field_requestUrl" [(ngModel)]="sysLog!.requestUrl" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_requestType"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.requestType"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.requestType' | translate"
+        >Request Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="requestType" id="field_requestType" [(ngModel)]="sysLog!.requestType" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_costTime"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.costTime"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.costTime' | translate"
+        >Cost Time</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="costTime" id="field_costTime" [(ngModel)]="sysLog!.costTime" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.sysLog.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.sysLog.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="sysLog!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item style="width: 100%">
+      <nz-collapse nzAccordion [nzBordered]="false">
+        <nz-collapse-panel [nzHeader]="'jhipsterSampleApplicationApp.sysLog.requestParam' | translate" [nzActive]="false">
+          <nz-form-control [nzSm]="24" [nzXs]="24">
+            <editor
+              id="field_requestParam"
+              placeholder=" 'jhipsterSampleApplicationApp.sysLog.help.requestParam' | translate"
+              [(ngModel)]="sysLog!.requestParam"
+              name="requestParam"
+            ></editor>
+          </nz-form-control>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

@@ -1,0 +1,192 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.settingsDataDictionary.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="dataDictionary!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_name"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.name"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.name' | translate"
+        >Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="name" id="field_name" [(ngModel)]="dataDictionary!.name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_code"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.code"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.code' | translate"
+        >Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="code" id="field_code" [(ngModel)]="dataDictionary!.code" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_title"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.title"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.title' | translate"
+        >Title</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="title" id="field_title" [(ngModel)]="dataDictionary!.title" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_value"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.value"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.value' | translate"
+        >Value</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="value" id="field_value" [(ngModel)]="dataDictionary!.value" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_description"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.description"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.description' | translate"
+        >Description</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="description" id="field_description" [(ngModel)]="dataDictionary!.description" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_sortOrder"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.sortOrder"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.sortOrder' | translate"
+        >Sort Order</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="sortOrder" id="field_sortOrder" [(ngModel)]="dataDictionary!.sortOrder" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_disabled"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.disabled"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.disabled' | translate"
+        >Disabled</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="dataDictionary!.disabled" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_fontColor"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.fontColor"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.fontColor' | translate"
+        >Font Color</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="fontColor" id="field_fontColor" [(ngModel)]="dataDictionary!.fontColor" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_valueType"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.valueType"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.valueType' | translate"
+        >Value Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_valueType"
+          [(ngModel)]="dataDictionary!.valueType"
+          name="valueType"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="NUMBER" nzLabel="{{ 'jhipsterSampleApplicationApp.DictType.NUMBER' | translate }}"></nz-option>
+          <nz-option nzValue="STRING" nzLabel="{{ 'jhipsterSampleApplicationApp.DictType.STRING' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_backgroundColor"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.backgroundColor"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.backgroundColor' | translate"
+        >Background Color</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="backgroundColor" id="field_backgroundColor" [(ngModel)]="dataDictionary!.backgroundColor" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsDataDictionary.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="dataDictionary!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_parent" jhiTranslate="jhipsterSampleApplicationApp.settingsDataDictionary.parent"
+        >Parent</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-tree-select
+          style="width: 250px"
+          id="field_parent"
+          [nzNodes]="dataDictionariesCollectionNzTreeNodes"
+          name="parent"
+          [(ngModel)]="dataDictionary!.parent"
+        >
+        </nz-tree-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

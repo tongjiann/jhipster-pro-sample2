@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.myapp.repository.RegionCodeRepository">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.mycompany.myapp.domain.RegionCode">
+        <id column="id" property="id"/>
+        <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="area_code" property="areaCode" />
+        <result column="city_code" property="cityCode" />
+        <result column="merger_name" property="mergerName" />
+        <result column="short_name" property="shortName" />
+        <result column="zip_code" property="zipCode" />
+        <result column="level" property="level" />
+        <result column="lng" property="lng" />
+        <result column="lat" property="lat" />
+        <result column="removed_at" property="removedAt" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,id,name,area_code,city_code,merger_name,short_name,zip_code,level,lng,lat,removed_at
+    </sql>
+</mapper>

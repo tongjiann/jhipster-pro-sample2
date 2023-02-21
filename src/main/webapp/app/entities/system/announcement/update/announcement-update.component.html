@@ -1,0 +1,321 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.announcement.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.announcement.id">ID</nz-form-label>
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="announcement!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_titile"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.titile"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.titile' | translate"
+        >Titile</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="titile" id="field_titile" [(ngModel)]="announcement!.titile" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_startTime"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.startTime"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.startTime' | translate"
+        >Start Time</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_startTime" name="startTime" [(ngModel)]="announcement!.startTime" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_endTime"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.endTime"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.endTime' | translate"
+        >End Time</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_endTime" name="endTime" [(ngModel)]="announcement!.endTime" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_senderId"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.senderId"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.senderId' | translate"
+        >Sender Id</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="senderId" id="field_senderId" [(ngModel)]="announcement!.senderId" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_priority"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.priority"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.priority' | translate"
+        >Priority</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_priority"
+          [(ngModel)]="announcement!.priority"
+          name="priority"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="HIGH" nzLabel="{{ 'jhipsterSampleApplicationApp.PriorityLevel.HIGH' | translate }}"></nz-option>
+          <nz-option nzValue="MEDIUM" nzLabel="{{ 'jhipsterSampleApplicationApp.PriorityLevel.MEDIUM' | translate }}"></nz-option>
+          <nz-option nzValue="LOW" nzLabel="{{ 'jhipsterSampleApplicationApp.PriorityLevel.LOW' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_category"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.category"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.category' | translate"
+        >Category</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_category"
+          [(ngModel)]="announcement!.category"
+          name="category"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="SYSTEM_INFO" nzLabel="{{ 'jhipsterSampleApplicationApp.AnnoCategory.SYSTEM_INFO' | translate }}"></nz-option>
+          <nz-option nzValue="NOTICE" nzLabel="{{ 'jhipsterSampleApplicationApp.AnnoCategory.NOTICE' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_receiverType"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.receiverType"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.receiverType' | translate"
+        >Receiver Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_receiverType"
+          [(ngModel)]="announcement!.receiverType"
+          name="receiverType"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="USER" nzLabel="{{ 'jhipsterSampleApplicationApp.ReceiverType.USER' | translate }}"></nz-option>
+          <nz-option nzValue="ALL" nzLabel="{{ 'jhipsterSampleApplicationApp.ReceiverType.ALL' | translate }}"></nz-option>
+          <nz-option nzValue="DEPARTMENT" nzLabel="{{ 'jhipsterSampleApplicationApp.ReceiverType.DEPARTMENT' | translate }}"></nz-option>
+          <nz-option nzValue="AUTHORITY" nzLabel="{{ 'jhipsterSampleApplicationApp.ReceiverType.AUTHORITY' | translate }}"></nz-option>
+          <nz-option nzValue="POSITION" nzLabel="{{ 'jhipsterSampleApplicationApp.ReceiverType.POSITION' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_sendStatus"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.sendStatus"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.sendStatus' | translate"
+        >Send Status</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_sendStatus"
+          [(ngModel)]="announcement!.sendStatus"
+          name="sendStatus"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option
+            nzValue="NOT_RELEASE"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.AnnoSendStatus.NOT_RELEASE' | translate }}"
+          ></nz-option>
+          <nz-option nzValue="RELEASED" nzLabel="{{ 'jhipsterSampleApplicationApp.AnnoSendStatus.RELEASED' | translate }}"></nz-option>
+          <nz-option nzValue="CANCELED" nzLabel="{{ 'jhipsterSampleApplicationApp.AnnoSendStatus.CANCELED' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_sendTime"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.sendTime"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.sendTime' | translate"
+        >Send Time</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_sendTime" name="sendTime" [(ngModel)]="announcement!.sendTime" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_cancelTime"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.cancelTime"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.cancelTime' | translate"
+        >Cancel Time</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_cancelTime" name="cancelTime" [(ngModel)]="announcement!.cancelTime" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_businessType"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.businessType"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.businessType' | translate"
+        >Business Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_businessType"
+          [(ngModel)]="announcement!.businessType"
+          name="businessType"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="EMAIL" nzLabel="{{ 'jhipsterSampleApplicationApp.AnnoBusinessType.EMAIL' | translate }}"></nz-option>
+          <nz-option nzValue="WORKFLOW" nzLabel="{{ 'jhipsterSampleApplicationApp.AnnoBusinessType.WORKFLOW' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_businessId"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.businessId"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.businessId' | translate"
+        >Business Id</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="businessId" id="field_businessId" [(ngModel)]="announcement!.businessId" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_openType"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.openType"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.openType' | translate"
+        >Open Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_openType"
+          [(ngModel)]="announcement!.openType"
+          name="openType"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="URL" nzLabel="{{ 'jhipsterSampleApplicationApp.AnnoOpenType.URL' | translate }}"></nz-option>
+          <nz-option nzValue="COMPONENT" nzLabel="{{ 'jhipsterSampleApplicationApp.AnnoOpenType.COMPONENT' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_openPage"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.openPage"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.openPage' | translate"
+        >Open Page</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="openPage" id="field_openPage" [(ngModel)]="announcement!.openPage" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_receiverIds"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.receiverIds"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.receiverIds' | translate"
+        >Receiver Ids</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="receiverIds" id="field_receiverIds" [(ngModel)]="announcement!.receiverIds" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.announcement.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcement.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="announcement!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item style="width: 100%">
+      <nz-collapse nzAccordion [nzBordered]="false">
+        <nz-collapse-panel [nzHeader]="'jhipsterSampleApplicationApp.announcement.content' | translate" [nzActive]="false">
+          <nz-form-control [nzSm]="24" [nzXs]="24">
+            <editor
+              id="field_content"
+              placeholder=" 'jhipsterSampleApplicationApp.announcement.help.content' | translate"
+              [(ngModel)]="announcement!.content"
+              name="content"
+            ></editor>
+          </nz-form-control>
+        </nz-collapse-panel>
+        <nz-collapse-panel [nzHeader]="'jhipsterSampleApplicationApp.announcement.summary' | translate" [nzActive]="false">
+          <nz-form-control [nzSm]="24" [nzXs]="24">
+            <editor
+              id="field_summary"
+              placeholder=" 'jhipsterSampleApplicationApp.announcement.help.summary' | translate"
+              [(ngModel)]="announcement!.summary"
+              name="summary"
+            ></editor>
+          </nz-form-control>
+        </nz-collapse-panel>
+      </nz-collapse>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

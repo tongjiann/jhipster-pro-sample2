@@ -1,0 +1,9 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "ViewPermissionType": {
+      "null": "",
+      "MENU": "MENU",
+      "BUTTON": "BUTTON"
+    }
+  }
+}

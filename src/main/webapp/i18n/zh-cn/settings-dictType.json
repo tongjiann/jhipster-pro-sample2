@@ -1,0 +1,9 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "DictType": {
+      "null": "",
+      "NUMBER": "NUMBER",
+      "STRING": "STRING"
+    }
+  }
+}

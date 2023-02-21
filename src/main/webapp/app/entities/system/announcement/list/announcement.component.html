@@ -1,0 +1,427 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="jhipsterSampleApplicationApp.announcement.home.title">Announcements</h1>
+      <form nz-form class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadPage()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="announcements!" [nzScroll]="{ x: '100%' }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th
+              nzLeft="48px"
+              nzWidth="52px"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+            >
+              <span jhiTranslate="global.field.id">ID</span>
+              <i
+                class="ant-table-filter-icon"
+                nz-icon
+                nz-dropdown
+                #dropdown="nzDropdown"
+                nzType="search"
+                [nzDropdownMenu]="idmenu"
+                [class.ant-table-filter-open]="dropdown.nzVisible"
+                nzTrigger="click"
+                nzPlacement="bottomRight"
+                [nzClickHide]="false"
+                nzTableFilter
+              >
+              </i>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.titile"
+              (nzSortOrderChange)="sort('titile', $event)"
+              nzCustomFilter
+              *ngIf="showField('titile')"
+              [nzWidth]="fieldWidth('titile')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.titile">Titile</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.content"
+              (nzSortOrderChange)="sort('content', $event)"
+              nzCustomFilter
+              *ngIf="showField('content')"
+              [nzWidth]="fieldWidth('content')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.content">Content</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.startTime"
+              (nzSortOrderChange)="sort('startTime', $event)"
+              nzCustomFilter
+              *ngIf="showField('startTime')"
+              [nzWidth]="fieldWidth('startTime')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.startTime">Start Time</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.endTime"
+              (nzSortOrderChange)="sort('endTime', $event)"
+              nzCustomFilter
+              *ngIf="showField('endTime')"
+              [nzWidth]="fieldWidth('endTime')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.endTime">End Time</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.senderId"
+              (nzSortOrderChange)="sort('senderId', $event)"
+              nzCustomFilter
+              *ngIf="showField('senderId')"
+              [nzWidth]="fieldWidth('senderId')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.senderId">Sender Id</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.priority"
+              (nzSortOrderChange)="sort('priority', $event)"
+              nzCustomFilter
+              *ngIf="showField('priority')"
+              [nzWidth]="fieldWidth('priority')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.priority">Priority</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.category"
+              (nzSortOrderChange)="sort('category', $event)"
+              nzCustomFilter
+              *ngIf="showField('category')"
+              [nzWidth]="fieldWidth('category')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.category">Category</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.receiverType"
+              (nzSortOrderChange)="sort('receiverType', $event)"
+              nzCustomFilter
+              *ngIf="showField('receiverType')"
+              [nzWidth]="fieldWidth('receiverType')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.receiverType">Receiver Type</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.sendStatus"
+              (nzSortOrderChange)="sort('sendStatus', $event)"
+              nzCustomFilter
+              *ngIf="showField('sendStatus')"
+              [nzWidth]="fieldWidth('sendStatus')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.sendStatus">Send Status</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.sendTime"
+              (nzSortOrderChange)="sort('sendTime', $event)"
+              nzCustomFilter
+              *ngIf="showField('sendTime')"
+              [nzWidth]="fieldWidth('sendTime')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.sendTime">Send Time</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.cancelTime"
+              (nzSortOrderChange)="sort('cancelTime', $event)"
+              nzCustomFilter
+              *ngIf="showField('cancelTime')"
+              [nzWidth]="fieldWidth('cancelTime')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.cancelTime">Cancel Time</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.businessType"
+              (nzSortOrderChange)="sort('businessType', $event)"
+              nzCustomFilter
+              *ngIf="showField('businessType')"
+              [nzWidth]="fieldWidth('businessType')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.businessType">Business Type</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.businessId"
+              (nzSortOrderChange)="sort('businessId', $event)"
+              nzCustomFilter
+              *ngIf="showField('businessId')"
+              [nzWidth]="fieldWidth('businessId')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.businessId">Business Id</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.openType"
+              (nzSortOrderChange)="sort('openType', $event)"
+              nzCustomFilter
+              *ngIf="showField('openType')"
+              [nzWidth]="fieldWidth('openType')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.openType">Open Type</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.openPage"
+              (nzSortOrderChange)="sort('openPage', $event)"
+              nzCustomFilter
+              *ngIf="showField('openPage')"
+              [nzWidth]="fieldWidth('openPage')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.openPage">Open Page</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.receiverIds"
+              (nzSortOrderChange)="sort('receiverIds', $event)"
+              nzCustomFilter
+              *ngIf="showField('receiverIds')"
+              [nzWidth]="fieldWidth('receiverIds')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.receiverIds">Receiver Ids</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.summary"
+              (nzSortOrderChange)="sort('summary', $event)"
+              nzCustomFilter
+              *ngIf="showField('summary')"
+              [nzWidth]="fieldWidth('summary')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.summary">Summary</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.removedAt"
+              (nzSortOrderChange)="sort('removedAt', $event)"
+              nzCustomFilter
+              *ngIf="showField('removedAt')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcement.removedAt">Removed At</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-announcement [ngForOf]="nzTable.data">
+            <tr>
+              <td nzLeft="0px" nzShowCheckbox [(nzChecked)]="mapOfCheckedId[announcement.id!]" (nzCheckedChange)="refreshStatus()"></td>
+              <td nzLeft="48px">{{ announcement.id }}</td>
+              <td *ngIf="showField('titile')">
+                <ng-container *ngIf="!editStatus[announcement.id!]?.edit; else nametitileTpl">
+                  {{ announcement.titile }}
+                </ng-container>
+                <ng-template #nametitileTpl>
+                  <input nz-input type="text" name="titile" [(ngModel)]="announcement.titile" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('startTime')">
+                <ng-container *ngIf="!editStatus[announcement.id!]?.edit; else namestartTimeTpl">
+                  {{ announcement.startTime }}
+                </ng-container>
+                <ng-template #namestartTimeTpl>
+                  <nz-date-picker [(ngModel)]="announcement.startTime" nzShowTime></nz-date-picker>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('endTime')">
+                <ng-container *ngIf="!editStatus[announcement.id!]?.edit; else nameendTimeTpl">
+                  {{ announcement.endTime }}
+                </ng-container>
+                <ng-template #nameendTimeTpl>
+                  <nz-date-picker [(ngModel)]="announcement.endTime" nzShowTime></nz-date-picker>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('senderId')">
+                <ng-container *ngIf="!editStatus[announcement.id!]?.edit; else namesenderIdTpl">
+                  {{ announcement.senderId }}
+                </ng-container>
+                <ng-template #namesenderIdTpl>
+                  <nz-input-number name="senderId" [(ngModel)]="announcement.senderId"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('priority')" jhiTranslate="{{ 'jhipsterSampleApplicationApp.PriorityLevel.' + announcement.priority }}">
+                {{ announcement.priority }}
+              </td>
+              <td *ngIf="showField('category')" jhiTranslate="{{ 'jhipsterSampleApplicationApp.AnnoCategory.' + announcement.category }}">
+                {{ announcement.category }}
+              </td>
+              <td
+                *ngIf="showField('receiverType')"
+                jhiTranslate="{{ 'jhipsterSampleApplicationApp.ReceiverType.' + announcement.receiverType }}"
+              >
+                {{ announcement.receiverType }}
+              </td>
+              <td
+                *ngIf="showField('sendStatus')"
+                jhiTranslate="{{ 'jhipsterSampleApplicationApp.AnnoSendStatus.' + announcement.sendStatus }}"
+              >
+                {{ announcement.sendStatus }}
+              </td>
+              <td *ngIf="showField('sendTime')">
+                <ng-container *ngIf="!editStatus[announcement.id!]?.edit; else namesendTimeTpl">
+                  {{ announcement.sendTime }}
+                </ng-container>
+                <ng-template #namesendTimeTpl>
+                  <nz-date-picker [(ngModel)]="announcement.sendTime" nzShowTime></nz-date-picker>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('cancelTime')">
+                <ng-container *ngIf="!editStatus[announcement.id!]?.edit; else namecancelTimeTpl">
+                  {{ announcement.cancelTime }}
+                </ng-container>
+                <ng-template #namecancelTimeTpl>
+                  <nz-date-picker [(ngModel)]="announcement.cancelTime" nzShowTime></nz-date-picker>
+                </ng-template>
+              </td>
+              <td
+                *ngIf="showField('businessType')"
+                jhiTranslate="{{ 'jhipsterSampleApplicationApp.AnnoBusinessType.' + announcement.businessType }}"
+              >
+                {{ announcement.businessType }}
+              </td>
+              <td *ngIf="showField('businessId')">
+                <ng-container *ngIf="!editStatus[announcement.id!]?.edit; else namebusinessIdTpl">
+                  {{ announcement.businessId }}
+                </ng-container>
+                <ng-template #namebusinessIdTpl>
+                  <nz-input-number name="businessId" [(ngModel)]="announcement.businessId"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('openType')" jhiTranslate="{{ 'jhipsterSampleApplicationApp.AnnoOpenType.' + announcement.openType }}">
+                {{ announcement.openType }}
+              </td>
+              <td *ngIf="showField('openPage')">
+                <ng-container *ngIf="!editStatus[announcement.id!]?.edit; else nameopenPageTpl">
+                  {{ announcement.openPage }}
+                </ng-container>
+                <ng-template #nameopenPageTpl>
+                  <input nz-input type="text" name="openPage" [(ngModel)]="announcement.openPage" />
+                </ng-template>
+              </td>
+              <td *ngIf="showField('receiverIds')">{{ announcement.receiverIds }}</td>
+              <td *ngIf="showField('removedAt')">
+                <ng-container *ngIf="!editStatus[announcement.id!]?.edit; else nameremovedAtTpl">
+                  {{ announcement.removedAt | date: 'yyyy-MM-dd' }}
+                </ng-container>
+                <ng-template #nameremovedAtTpl>
+                  <nz-date-picker [(ngModel)]="announcement.removedAt"></nz-date-picker>
+                </ng-template>
+              </td>
+              <td nzRight="0px">
+                <ng-container *ngIf="!editStatus[announcement.id!]?.edit; else saveTpl">
+                  <button nz-button nzType="default" nzShape="circle" nz-tooltip nzTooltipTitle="行改" (click)="startEdit(announcement)">
+                    <i nz-icon [nzType]="'file-text'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="danger"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="删除"
+                    (click)="deleteConfirm(announcement.id)"
+                  >
+                    <i nz-icon nzType="close" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="编辑"
+                    [routerLink]="['./', announcement.id, 'edit']"
+                  >
+                    <i nz-icon nzType="setting"></i>
+                  </button>
+                </ng-container>
+                <ng-template #saveTpl>
+                  <a (click)="saveEdit(announcement)">保存</a>
+                  <a nz-popconfirm nzPopconfirmTitle="是否保存？" (nzOnConfirm)="cancelEdit(announcement.id)">取消</a>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>

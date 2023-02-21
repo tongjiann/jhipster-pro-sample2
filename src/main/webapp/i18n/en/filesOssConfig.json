@@ -1,0 +1,47 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "filesOssConfig": {
+      "home": {
+        "title": "Oss Configs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Oss Config",
+        "createOrEditLabel": "Create or edit a Oss Config",
+        "notFound": "No Oss Configs found"
+      },
+      "created": "A new Oss Config is created with identifier {{ param }}",
+      "updated": "A Oss Config is updated with identifier {{ param }}",
+      "deleted": "A Oss Config is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Oss Config {{ id }}?"
+      },
+      "detail": {
+        "title": "Oss Config"
+      },
+      "id": "ID",
+      "provider": "Provider",
+      "ossCode": "Oss Code",
+      "endpoint": "Endpoint",
+      "accessKey": "Access Key",
+      "secretKey": "Secret Key",
+      "bucketName": "Bucket Name",
+      "appId": "App Id",
+      "region": "Region",
+      "remark": "Remark",
+      "enabled": "Enabled",
+      "removedAt": "Removed At",
+      "help": {
+        "provider": "提供商",
+        "ossCode": "资源编号",
+        "endpoint": "资源地址",
+        "accessKey": "accessKey",
+        "secretKey": "secretKey",
+        "bucketName": "空间名",
+        "appId": "应用ID",
+        "region": "地域简称",
+        "remark": "备注",
+        "enabled": "启用",
+        "removedAt": "软删除时间"
+      }
+    }
+  }
+}

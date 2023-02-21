@@ -1,0 +1,249 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.home.title">Announcement Records</h1>
+      <form nz-form class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadPage()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="announcementRecords!" [nzScroll]="{ x: '100%' }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th
+              nzLeft="48px"
+              nzWidth="52px"
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.id"
+              (nzSortOrderChange)="sort('id', $event)"
+              nzCustomFilter
+            >
+              <span jhiTranslate="global.field.id">ID</span>
+              <i
+                class="ant-table-filter-icon"
+                nz-icon
+                nz-dropdown
+                #dropdown="nzDropdown"
+                nzType="search"
+                [nzDropdownMenu]="idmenu"
+                [class.ant-table-filter-open]="dropdown.nzVisible"
+                nzTrigger="click"
+                nzPlacement="bottomRight"
+                [nzClickHide]="false"
+                nzTableFilter
+              >
+              </i>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.anntId"
+              (nzSortOrderChange)="sort('anntId', $event)"
+              nzCustomFilter
+              *ngIf="showField('anntId')"
+              [nzWidth]="fieldWidth('anntId')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.anntId">Annt Id</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.userId"
+              (nzSortOrderChange)="sort('userId', $event)"
+              nzCustomFilter
+              *ngIf="showField('userId')"
+              [nzWidth]="fieldWidth('userId')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.userId">User Id</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.hasRead"
+              (nzSortOrderChange)="sort('hasRead', $event)"
+              nzCustomFilter
+              *ngIf="showField('hasRead')"
+              [nzWidth]="fieldWidth('hasRead')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.hasRead">Has Read</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.readTime"
+              (nzSortOrderChange)="sort('readTime', $event)"
+              nzCustomFilter
+              *ngIf="showField('readTime')"
+              [nzWidth]="fieldWidth('readTime')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.readTime">Read Time</span>
+            </th>
+            <th
+              nzShowSort
+              [(nzSortOrder)]="mapOfSort.removedAt"
+              (nzSortOrderChange)="sort('removedAt', $event)"
+              nzCustomFilter
+              *ngIf="showField('removedAt')"
+            >
+              <span jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.removedAt">Removed At</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-announcementRecord [ngForOf]="nzTable.data">
+            <tr>
+              <td
+                nzLeft="0px"
+                nzShowCheckbox
+                [(nzChecked)]="mapOfCheckedId[announcementRecord.id!]"
+                (nzCheckedChange)="refreshStatus()"
+              ></td>
+              <td nzLeft="48px">{{ announcementRecord.id }}</td>
+              <td *ngIf="showField('anntId')">
+                <ng-container *ngIf="!editStatus[announcementRecord.id!]?.edit; else nameanntIdTpl">
+                  {{ announcementRecord.anntId }}
+                </ng-container>
+                <ng-template #nameanntIdTpl>
+                  <nz-input-number name="anntId" [(ngModel)]="announcementRecord.anntId"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('userId')">
+                <ng-container *ngIf="!editStatus[announcementRecord.id!]?.edit; else nameuserIdTpl">
+                  {{ announcementRecord.userId }}
+                </ng-container>
+                <ng-template #nameuserIdTpl>
+                  <nz-input-number name="userId" [(ngModel)]="announcementRecord.userId"></nz-input-number>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('hasRead')">
+                <nz-switch
+                  [(ngModel)]="announcementRecord!.hasRead"
+                  nzCheckedChildren="是"
+                  nzUnCheckedChildren="否"
+                  [nzDisabled]="!editStatus[announcementRecord.id!].edit"
+                ></nz-switch>
+              </td>
+              <td *ngIf="showField('readTime')">
+                <ng-container *ngIf="!editStatus[announcementRecord.id!]?.edit; else namereadTimeTpl">
+                  {{ announcementRecord.readTime }}
+                </ng-container>
+                <ng-template #namereadTimeTpl>
+                  <nz-date-picker [(ngModel)]="announcementRecord.readTime" nzShowTime></nz-date-picker>
+                </ng-template>
+              </td>
+              <td *ngIf="showField('removedAt')">
+                <ng-container *ngIf="!editStatus[announcementRecord.id!]?.edit; else nameremovedAtTpl">
+                  {{ announcementRecord.removedAt | date: 'yyyy-MM-dd' }}
+                </ng-container>
+                <ng-template #nameremovedAtTpl>
+                  <nz-date-picker [(ngModel)]="announcementRecord.removedAt"></nz-date-picker>
+                </ng-template>
+              </td>
+              <td nzRight="0px">
+                <ng-container *ngIf="!editStatus[announcementRecord.id!]?.edit; else saveTpl">
+                  <button
+                    nz-button
+                    nzType="default"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="行改"
+                    (click)="startEdit(announcementRecord)"
+                  >
+                    <i nz-icon [nzType]="'file-text'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="danger"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="删除"
+                    (click)="deleteConfirm(announcementRecord.id)"
+                  >
+                    <i nz-icon nzType="close" nzTheme="outline"></i>
+                  </button>
+                  <button
+                    nz-button
+                    nzType="primary"
+                    nzShape="circle"
+                    nz-tooltip
+                    nzTooltipTitle="编辑"
+                    [routerLink]="['./', announcementRecord.id, 'edit']"
+                  >
+                    <i nz-icon nzType="setting"></i>
+                  </button>
+                </ng-container>
+                <ng-template #saveTpl>
+                  <a (click)="saveEdit(announcementRecord)">保存</a>
+                  <a nz-popconfirm nzPopconfirmTitle="是否保存？" (nzOnConfirm)="cancelEdit(announcementRecord.id)">取消</a>
+                </ng-template>
+              </td>
+            </tr>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>

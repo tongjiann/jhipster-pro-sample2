@@ -1,0 +1,175 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.settingsRegionCode.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="regionCode!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_name"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.name"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsRegionCode.help.name' | translate"
+        >Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="name" id="field_name" [(ngModel)]="regionCode!.name" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_areaCode"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.areaCode"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsRegionCode.help.areaCode' | translate"
+        >Area Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="areaCode" id="field_areaCode" [(ngModel)]="regionCode!.areaCode" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_cityCode"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.cityCode"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsRegionCode.help.cityCode' | translate"
+        >City Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="cityCode" id="field_cityCode" [(ngModel)]="regionCode!.cityCode" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_mergerName"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.mergerName"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsRegionCode.help.mergerName' | translate"
+        >Merger Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="mergerName" id="field_mergerName" [(ngModel)]="regionCode!.mergerName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_shortName"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.shortName"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsRegionCode.help.shortName' | translate"
+        >Short Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="shortName" id="field_shortName" [(ngModel)]="regionCode!.shortName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_zipCode"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.zipCode"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsRegionCode.help.zipCode' | translate"
+        >Zip Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="zipCode" id="field_zipCode" [(ngModel)]="regionCode!.zipCode" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_level"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.level"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsRegionCode.help.level' | translate"
+        >Level</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select style="width: 200px" id="field_level" [(ngModel)]="regionCode!.level" name="level" nzAllowClear nzPlaceHolder="Choose">
+          <nz-option nzValue="PROVINCE" nzLabel="{{ 'jhipsterSampleApplicationApp.RegionCodeLevel.PROVINCE' | translate }}"></nz-option>
+          <nz-option nzValue="CITY" nzLabel="{{ 'jhipsterSampleApplicationApp.RegionCodeLevel.CITY' | translate }}"></nz-option>
+          <nz-option nzValue="COUNTY" nzLabel="{{ 'jhipsterSampleApplicationApp.RegionCodeLevel.COUNTY' | translate }}"></nz-option>
+          <nz-option nzValue="TOWN" nzLabel="{{ 'jhipsterSampleApplicationApp.RegionCodeLevel.TOWN' | translate }}"></nz-option>
+          <nz-option nzValue="VILLAGE" nzLabel="{{ 'jhipsterSampleApplicationApp.RegionCodeLevel.VILLAGE' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_lng"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.lng"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsRegionCode.help.lng' | translate"
+        >Lng</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="lng" id="field_lng" [(ngModel)]="regionCode!.lng" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_lat"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.lat"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsRegionCode.help.lat' | translate"
+        >Lat</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="lat" id="field_lat" [(ngModel)]="regionCode!.lat" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.settingsRegionCode.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="regionCode!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_parent" jhiTranslate="jhipsterSampleApplicationApp.settingsRegionCode.parent"
+        >Parent</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-tree-select
+          style="width: 250px"
+          id="field_parent"
+          [nzNodes]="regionCodesCollectionNzTreeNodes"
+          name="parent"
+          [(ngModel)]="regionCode!.parent"
+        >
+        </nz-tree-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

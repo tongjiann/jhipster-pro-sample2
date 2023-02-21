@@ -1,0 +1,88 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.announcementRecord.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="announcementRecord!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_anntId"
+        jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.anntId"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcementRecord.help.anntId' | translate"
+        >Annt Id</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="anntId" id="field_anntId" [(ngModel)]="announcementRecord!.anntId" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_userId"
+        jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.userId"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcementRecord.help.userId' | translate"
+        >User Id</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="userId" id="field_userId" [(ngModel)]="announcementRecord!.userId" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_hasRead"
+        jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.hasRead"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcementRecord.help.hasRead' | translate"
+        >Has Read</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="announcementRecord!.hasRead" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_readTime"
+        jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.readTime"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcementRecord.help.readTime' | translate"
+        >Read Time</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_readTime" name="readTime" [(ngModel)]="announcementRecord!.readTime" nzShowTime></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.announcementRecord.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.announcementRecord.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="announcementRecord!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

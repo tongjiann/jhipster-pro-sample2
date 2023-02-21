@@ -1,0 +1,254 @@
+<page-grid>
+  <div nz-row [nzGutter]="24">
+    <div nz-col>
+      <h1 jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.home.title">View Permissions</h1>
+      <form nz-form class="search__form">
+        <div nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 24, xl: 48, xxl: 48 }">
+          <div nz-col nzMd="8" nzSm="24">
+            <nz-form-item>
+              <nz-form-label nzFor="no">搜索</nz-form-label>
+              <nz-form-control>
+                <nz-input-group [nzSuffix]="searchSuffixTemplate">
+                  <input type="text" nz-input name="jhiCommonSearchKeywords" [(ngModel)]="searchValue" placeholder="请输入关键字" />
+                </nz-input-group>
+                <ng-template #searchSuffixTemplate>
+                  <i
+                    nz-icon
+                    nz-tooltip
+                    class="ant-input-clear-icon"
+                    nzTheme="fill"
+                    nzType="close-circle"
+                    *ngIf="searchValue"
+                    (click)="searchValue = ''"
+                  ></i>
+                </ng-template>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <button nz-button type="submit" nzType="primary" (click)="loadPage()">查询</button>
+            <button nz-button nzType="primary" [routerLink]="['./new']">增加</button>
+            <button nz-button nzType="danger" *ngIf="numberOfChecked > 0" (click)="deleteByIdsConfirm()">批量删除</button>
+          </div>
+        </div>
+      </form>
+      <div class="my-md">
+        <nz-alert [nzType]="'info'" [nzShowIcon]="true" [nzMessage]="message">
+          <ng-template #message>
+            已选择
+            <strong class="text-primary">{{ numberOfChecked }}</strong> 项&nbsp;
+          </ng-template>
+        </nz-alert>
+      </div>
+      <nz-table #nzTable [nzData]="viewPermissions!" [nzScroll]="{ x: '100%' }">
+        <thead>
+          <tr>
+            <th
+              nzLeft="0px"
+              nzWidth="48px"
+              nzShowCheckbox
+              [(nzChecked)]="isAllDisplayDataChecked"
+              [nzIndeterminate]="isIndeterminate"
+              (nzCheckedChange)="checkAll($event)"
+            ></th>
+            <th *ngIf="showField('text')" [nzWidth]="fieldWidth('text')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.text">Text</span>
+            </th>
+            <th *ngIf="showField('i18n')" [nzWidth]="fieldWidth('i18n')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.i18n">I 18 N</span>
+            </th>
+            <th *ngIf="showField('group')" [nzWidth]="fieldWidth('group')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.group">Group</span>
+            </th>
+            <th *ngIf="showField('link')" [nzWidth]="fieldWidth('link')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.link">Link</span>
+            </th>
+            <th *ngIf="showField('externalLink')" [nzWidth]="fieldWidth('externalLink')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.externalLink">External Link</span>
+            </th>
+            <th *ngIf="showField('target')" [nzWidth]="fieldWidth('target')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.target">Target</span>
+            </th>
+            <th *ngIf="showField('icon')" [nzWidth]="fieldWidth('icon')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.icon">Icon</span>
+            </th>
+            <th *ngIf="showField('disabled')" [nzWidth]="fieldWidth('disabled')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.disabled">Disabled</span>
+            </th>
+            <th *ngIf="showField('hide')" [nzWidth]="fieldWidth('hide')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.hide">Hide</span>
+            </th>
+            <th *ngIf="showField('hideInBreadcrumb')" [nzWidth]="fieldWidth('hideInBreadcrumb')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.hideInBreadcrumb">Hide In Breadcrumb</span>
+            </th>
+            <th *ngIf="showField('shortcut')" [nzWidth]="fieldWidth('shortcut')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.shortcut">Shortcut</span>
+            </th>
+            <th *ngIf="showField('shortcutRoot')" [nzWidth]="fieldWidth('shortcutRoot')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.shortcutRoot">Shortcut Root</span>
+            </th>
+            <th *ngIf="showField('reuse')" [nzWidth]="fieldWidth('reuse')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.reuse">Reuse</span>
+            </th>
+            <th *ngIf="showField('code')" [nzWidth]="fieldWidth('code')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.code">Code</span>
+            </th>
+            <th *ngIf="showField('description')" [nzWidth]="fieldWidth('description')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.description">Description</span>
+            </th>
+            <th *ngIf="showField('type')" [nzWidth]="fieldWidth('type')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.type">Type</span>
+            </th>
+            <th *ngIf="showField('order')" [nzWidth]="fieldWidth('order')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.order">Order</span>
+            </th>
+            <th *ngIf="showField('apiPermissionCodes')" [nzWidth]="fieldWidth('apiPermissionCodes')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.apiPermissionCodes">Api Permission Codes</span>
+            </th>
+            <th *ngIf="showField('componentFile')" [nzWidth]="fieldWidth('componentFile')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.componentFile">Component File</span>
+            </th>
+            <th *ngIf="showField('redirect')" [nzWidth]="fieldWidth('redirect')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.redirect">Redirect</span>
+            </th>
+            <th *ngIf="showField('removedAt')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.removedAt">Removed At</span>
+            </th>
+            <th [nzWidth]="relationshipWidth('departmentAuthority')" *ngIf="showRelationship('departmentAuthority')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.departmentAuthority">Department Authority</span>
+            </th>
+            <th [nzWidth]="relationshipWidth('parent')" *ngIf="showRelationship('parent')">
+              <span jhiTranslate="jhipsterSampleApplicationApp.systemViewPermission.parent">Parent</span>
+            </th>
+            <th nzWidth="160px" nzRight="0px">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-template ngFor let-viewPermission [ngForOf]="nzTable.data">
+            <ng-template ngFor let-item [ngForOf]="expandDataCache[viewPermission.id!]">
+              <tr *ngIf="(item.parent && item.parent.expand) || !item.parent">
+                <td
+                  nzLeft="0px"
+                  nzWidth="48px"
+                  nzShowCheckbox
+                  [(nzChecked)]="mapOfCheckedId[viewPermission.id!]"
+                  (nzCheckedChange)="refreshStatus()"
+                ></td>
+                <td
+                  [nzIndentSize]="item.nzAddLevel * 20"
+                  [nzShowExpand]="!!item.children && item.children.length > 0"
+                  [(nzExpand)]="item.expand"
+                  (nzExpandChange)="collapse(expandDataCache[viewPermission.id!], item, $event)"
+                >
+                  {{ item.text }}
+                </td>
+                <td *ngIf="showField('i18n')">
+                  {{ item.i18n }}
+                </td>
+                <td *ngIf="showField('group')">
+                  {{ item.group }}
+                </td>
+                <td *ngIf="showField('link')">
+                  {{ item.link }}
+                </td>
+                <td *ngIf="showField('externalLink')">
+                  {{ item.externalLink }}
+                </td>
+                <td *ngIf="showField('target')">{{ 'jhipsterSampleApplicationApp.TargetType.' + item.target | translate }}</td>
+                <td *ngIf="showField('icon')">
+                  {{ item.icon }}
+                </td>
+                <td *ngIf="showField('disabled')">
+                  {{ item.disabled }}
+                </td>
+                <td *ngIf="showField('hide')">
+                  {{ item.hide }}
+                </td>
+                <td *ngIf="showField('hideInBreadcrumb')">
+                  {{ item.hideInBreadcrumb }}
+                </td>
+                <td *ngIf="showField('shortcut')">
+                  {{ item.shortcut }}
+                </td>
+                <td *ngIf="showField('shortcutRoot')">
+                  {{ item.shortcutRoot }}
+                </td>
+                <td *ngIf="showField('reuse')">
+                  {{ item.reuse }}
+                </td>
+                <td *ngIf="showField('code')">
+                  {{ item.code }}
+                </td>
+                <td *ngIf="showField('description')">
+                  {{ item.description }}
+                </td>
+                <td *ngIf="showField('type')">{{ 'jhipsterSampleApplicationApp.ViewPermissionType.' + item.type | translate }}</td>
+                <td *ngIf="showField('order')">
+                  {{ item.order }}
+                </td>
+                <td *ngIf="showField('apiPermissionCodes')">
+                  {{ item.apiPermissionCodes }}
+                </td>
+                <td *ngIf="showField('componentFile')">
+                  {{ item.componentFile }}
+                </td>
+                <td *ngIf="showField('redirect')">
+                  {{ item.redirect }}
+                </td>
+                <td *ngIf="showField('removedAt')">{{ item.removedAt }}</td>
+
+                <td *ngIf="showRelationship('departmentAuthority')">
+                  <div *ngIf="item.departmentAuthority.id">
+                    <a [routerLink]="['../department-authority', item.departmentAuthority.id, 'view']">{{ item.departmentAuthority.id }}</a>
+                  </div>
+                </td>
+                <td *ngIf="showRelationship('parent')">
+                  <div *ngIf="item.parent.id">
+                    <a [routerLink]="['../view-permission', item.parent.id, 'view']">{{ item.parent.text }}</a>
+                  </div>
+                </td>
+                <td>
+                  <button nz-button nz-dropdown [nzDropdownMenu]="menuOperate" [routerLink]="['./', item.id, 'edit']">
+                    编辑<i nz-icon type="down"></i>
+                  </button>
+                  <nz-dropdown-menu #menuOperate="nzDropdownMenu">
+                    <ul nz-menu>
+                      <li nz-menu-item>
+                        <button nz-button nzType="dashed" (click)="deleteConfirm(item.id)">删除</button>
+                      </li>
+                    </ul>
+                  </nz-dropdown-menu>
+                </td>
+              </tr>
+            </ng-template>
+          </ng-template>
+        </tbody>
+      </nz-table>
+      <nz-dropdown-menu #idmenu="nzDropdownMenu">
+        <div class="search-box">
+          <div>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <span>-</span>
+            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          </div>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #textMenu="nzDropdownMenu">
+        <div class="search-box">
+          <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+      <nz-dropdown-menu #dateMenu="nzDropdownMenu">
+        <div class="search-box">
+          <nz-range-picker [(ngModel)]="dateRange" style="display: block; width: 260px; margin-bottom: 8px"></nz-range-picker>
+          <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+          <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+      </nz-dropdown-menu>
+    </div>
+  </div>
+</page-grid>

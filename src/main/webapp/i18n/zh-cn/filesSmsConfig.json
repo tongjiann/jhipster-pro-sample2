@@ -1,0 +1,45 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "filesSmsConfig": {
+      "home": {
+        "title": "Sms Configs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "创建新 Sms Config",
+        "createOrEditLabel": "创建或编辑 Sms Config",
+        "notFound": "No Sms Configs found"
+      },
+      "created": "Sms Config {{ param }} 创建成功",
+      "updated": "Sms Config {{ param }} 更新成功",
+      "deleted": "Sms Config {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Sms Config {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Sms Config"
+      },
+      "id": "ID",
+      "provider": "Provider",
+      "smsCode": "Sms Code",
+      "templateId": "Template Id",
+      "accessKey": "Access Key",
+      "secretKey": "Secret Key",
+      "regionId": "Region Id",
+      "signName": "Sign Name",
+      "remark": "Remark",
+      "enabled": "Enabled",
+      "removedAt": "Removed At",
+      "help": {
+        "provider": "提供商",
+        "smsCode": "资源编号",
+        "templateId": "模板ID",
+        "accessKey": "accessKey",
+        "secretKey": "secretKey",
+        "regionId": "regionId",
+        "signName": "短信签名",
+        "remark": "备注",
+        "enabled": "启用",
+        "removedAt": "软删除时间"
+      }
+    }
+  }
+}

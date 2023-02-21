@@ -1,0 +1,149 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.siteConfig.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.siteConfig.id">ID</nz-form-label>
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="siteConfig!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_title"
+        jhiTranslate="jhipsterSampleApplicationApp.siteConfig.title"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.siteConfig.help.title' | translate"
+        >Title</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="title" id="field_title" [(ngModel)]="siteConfig!.title" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_remark"
+        jhiTranslate="jhipsterSampleApplicationApp.siteConfig.remark"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.siteConfig.help.remark' | translate"
+        >Remark</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="remark" id="field_remark" [(ngModel)]="siteConfig!.remark" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_fieldName"
+        jhiTranslate="jhipsterSampleApplicationApp.siteConfig.fieldName"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.siteConfig.help.fieldName' | translate"
+        >Field Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="fieldName" id="field_fieldName" [(ngModel)]="siteConfig!.fieldName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_fieldValue"
+        jhiTranslate="jhipsterSampleApplicationApp.siteConfig.fieldValue"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.siteConfig.help.fieldValue' | translate"
+        >Field Value</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="fieldValue" id="field_fieldValue" [(ngModel)]="siteConfig!.fieldValue" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_fieldType"
+        jhiTranslate="jhipsterSampleApplicationApp.siteConfig.fieldType"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.siteConfig.help.fieldType' | translate"
+        >Field Type</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_fieldType"
+          [(ngModel)]="siteConfig!.fieldType"
+          name="fieldType"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="INTEGER" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.INTEGER' | translate }}"></nz-option>
+          <nz-option nzValue="LONG" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.LONG' | translate }}"></nz-option>
+          <nz-option nzValue="BOOLEAN" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.BOOLEAN' | translate }}"></nz-option>
+          <nz-option nzValue="STRING" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.STRING' | translate }}"></nz-option>
+          <nz-option nzValue="FLOAT" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.FLOAT' | translate }}"></nz-option>
+          <nz-option nzValue="DOUBLE" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.DOUBLE' | translate }}"></nz-option>
+          <nz-option
+            nzValue="ZONED_DATE_TIME"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.ZONED_DATE_TIME' | translate }}"
+          ></nz-option>
+          <nz-option
+            nzValue="LOCATE_DATE"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.LOCATE_DATE' | translate }}"
+          ></nz-option>
+          <nz-option
+            nzValue="BIG_DECIMAL"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.BIG_DECIMAL' | translate }}"
+          ></nz-option>
+          <nz-option nzValue="TEXTBLOB" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.TEXTBLOB' | translate }}"></nz-option>
+          <nz-option nzValue="IMAGEBLOB" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.IMAGEBLOB' | translate }}"></nz-option>
+          <nz-option nzValue="ARRAY" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.ARRAY' | translate }}"></nz-option>
+          <nz-option nzValue="ENUM" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.ENUM' | translate }}"></nz-option>
+          <nz-option
+            nzValue="UPLOAD_IMAGE"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.UPLOAD_IMAGE' | translate }}"
+          ></nz-option>
+          <nz-option
+            nzValue="UPLOAD_FILE"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.UPLOAD_FILE' | translate }}"
+          ></nz-option>
+          <nz-option nzValue="ENTITY" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.ENTITY' | translate }}"></nz-option>
+          <nz-option nzValue="RADIO" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.RADIO' | translate }}"></nz-option>
+          <nz-option
+            nzValue="MULTI_SELECT"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.MULTI_SELECT' | translate }}"
+          ></nz-option>
+          <nz-option
+            nzValue="DATA_DICTIONARY"
+            nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.DATA_DICTIONARY' | translate }}"
+          ></nz-option>
+          <nz-option nzValue="UUID" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.UUID' | translate }}"></nz-option>
+          <nz-option nzValue="INSTANT" nzLabel="{{ 'jhipsterSampleApplicationApp.CommonFieldType.INSTANT' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.siteConfig.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.siteConfig.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="siteConfig!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

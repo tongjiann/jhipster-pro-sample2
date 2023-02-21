@@ -1,0 +1,49 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "settingsDataDictionary": {
+      "home": {
+        "title": "Data Dictionaries",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "创建新 Data Dictionary",
+        "createOrEditLabel": "创建或编辑 Data Dictionary",
+        "notFound": "No Data Dictionaries found"
+      },
+      "created": "Data Dictionary {{ param }} 创建成功",
+      "updated": "Data Dictionary {{ param }} 更新成功",
+      "deleted": "Data Dictionary {{ param }} 删除成功",
+      "delete": {
+        "question": "你确定要删除 Data Dictionary {{ id }} 吗？"
+      },
+      "detail": {
+        "title": "Data Dictionary"
+      },
+      "id": "ID",
+      "name": "Name",
+      "code": "Code",
+      "title": "Title",
+      "value": "Value",
+      "description": "Description",
+      "sortOrder": "Sort Order",
+      "disabled": "Disabled",
+      "fontColor": "Font Color",
+      "valueType": "Value Type",
+      "backgroundColor": "Background Color",
+      "removedAt": "Removed At",
+      "children": "Children",
+      "parent": "Parent",
+      "help": {
+        "name": "名称",
+        "code": "代码",
+        "title": "字典项文本",
+        "value": "字典项值",
+        "description": "描述",
+        "sortOrder": "排序",
+        "disabled": "是否禁用",
+        "fontColor": "字体颜色",
+        "valueType": "值类型",
+        "backgroundColor": "背景颜色",
+        "removedAt": "软删除时间"
+      }
+    }
+  }
+}

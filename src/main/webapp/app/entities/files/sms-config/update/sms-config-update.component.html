@@ -1,0 +1,165 @@
+<!--<page-header [title]="'jhipsterSampleApplicationApp.filesSmsConfig.home.createOrEditLabel'| translate">-->
+<!--</page-header>-->
+<page-bar></page-bar>
+<nz-card [nzBordered]="false">
+  <form nz-form (ngSubmit)="save()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="field_id" jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.id"
+        >ID</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="number" name="id" id="field_id" [(ngModel)]="smsConfig!.id" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_provider"
+        jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.provider"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesSmsConfig.help.provider' | translate"
+        >Provider</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-select
+          style="width: 200px"
+          id="field_provider"
+          [(ngModel)]="smsConfig!.provider"
+          name="provider"
+          nzAllowClear
+          nzPlaceHolder="Choose"
+        >
+          <nz-option nzValue="YUNPIAN" nzLabel="{{ 'jhipsterSampleApplicationApp.SmsProvider.YUNPIAN' | translate }}"></nz-option>
+          <nz-option nzValue="QINIU" nzLabel="{{ 'jhipsterSampleApplicationApp.SmsProvider.QINIU' | translate }}"></nz-option>
+          <nz-option nzValue="ALI" nzLabel="{{ 'jhipsterSampleApplicationApp.SmsProvider.ALI' | translate }}"></nz-option>
+          <nz-option nzValue="TENCENT" nzLabel="{{ 'jhipsterSampleApplicationApp.SmsProvider.TENCENT' | translate }}"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_smsCode"
+        jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.smsCode"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesSmsConfig.help.smsCode' | translate"
+        >Sms Code</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="smsCode" id="field_smsCode" [(ngModel)]="smsConfig!.smsCode" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_templateId"
+        jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.templateId"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesSmsConfig.help.templateId' | translate"
+        >Template Id</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="templateId" id="field_templateId" [(ngModel)]="smsConfig!.templateId" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_accessKey"
+        jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.accessKey"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesSmsConfig.help.accessKey' | translate"
+        >Access Key</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="accessKey" id="field_accessKey" [(ngModel)]="smsConfig!.accessKey" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_secretKey"
+        jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.secretKey"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesSmsConfig.help.secretKey' | translate"
+        >Secret Key</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="secretKey" id="field_secretKey" [(ngModel)]="smsConfig!.secretKey" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_regionId"
+        jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.regionId"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesSmsConfig.help.regionId' | translate"
+        >Region Id</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="regionId" id="field_regionId" [(ngModel)]="smsConfig!.regionId" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_signName"
+        jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.signName"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesSmsConfig.help.signName' | translate"
+        >Sign Name</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="signName" id="field_signName" [(ngModel)]="smsConfig!.signName" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_remark"
+        jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.remark"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesSmsConfig.help.remark' | translate"
+        >Remark</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <input nz-input type="text" name="remark" id="field_remark" [(ngModel)]="smsConfig!.remark" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_enabled"
+        jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.enabled"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesSmsConfig.help.enabled' | translate"
+        >Enabled</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-switch [(ngModel)]="smsConfig!.enabled" nzCheckedChildren="是" nzUnCheckedChildren="否"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label
+        [nzSm]="6"
+        [nzXs]="24"
+        nzFor="field_removedAt"
+        jhiTranslate="jhipsterSampleApplicationApp.filesSmsConfig.removedAt"
+        [ngbTooltip]="'jhipsterSampleApplicationApp.filesSmsConfig.help.removedAt' | translate"
+        >Removed At</nz-form-label
+      >
+      <nz-form-control [nzSm]="17" [nzXs]="24">
+        <nz-date-picker id="field_removedAt" name="removedAt" [(ngModel)]="smsConfig!.removedAt"></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <div nz-row>
+      <div nz-col [nzSpan]="24" style="text-align: center">
+        <button type="submit" nz-button [nzType]="'primary'" [disabled]="isSaving">
+          <span jhiTranslate="entity.action.save">Save</span>
+        </button>
+        <button type="button" nz-button (click)="previousState()"><span jhiTranslate="entity.action.cancel">Cancel</span></button>
+      </div>
+    </div>
+  </form>
+</nz-card>

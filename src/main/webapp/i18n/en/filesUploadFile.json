@@ -1,0 +1,51 @@
+{
+  "jhipsterSampleApplicationApp": {
+    "filesUploadFile": {
+      "home": {
+        "title": "Upload Files",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Upload File",
+        "createOrEditLabel": "Create or edit a Upload File",
+        "notFound": "No Upload Files found"
+      },
+      "created": "A new Upload File is created with identifier {{ param }}",
+      "updated": "A Upload File is updated with identifier {{ param }}",
+      "deleted": "A Upload File is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Upload File {{ id }}?"
+      },
+      "detail": {
+        "title": "Upload File"
+      },
+      "id": "ID",
+      "fullName": "Full Name",
+      "name": "Name",
+      "ext": "Ext",
+      "type": "Type",
+      "url": "Url",
+      "path": "Path",
+      "folder": "Folder",
+      "entityName": "Entity Name",
+      "createAt": "Create At",
+      "fileSize": "File Size",
+      "referenceCount": "Reference Count",
+      "removedAt": "Removed At",
+      "user": "User",
+      "category": "Category",
+      "help": {
+        "fullName": "完整文件名\n不含路径",
+        "name": "文件名\n不含扩展名",
+        "ext": "扩展名",
+        "type": "文件类型",
+        "url": "Url地址",
+        "path": "本地路径",
+        "folder": "存储目录",
+        "entityName": "实体名称",
+        "createAt": "创建时间",
+        "fileSize": "文件大小",
+        "referenceCount": "被引次数",
+        "removedAt": "软删除时间"
+      }
+    }
+  }
+}
